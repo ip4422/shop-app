@@ -1,26 +1,31 @@
 import Home from './components/Home'
-import Login from './components/Login'
-import Signup from './components/Signup'
+// import Signup from './components/Signup'
 import Search from './components/Search'
 import Curt from './components/Curt'
+import LoginContainer from './containers/LoginContainer'
 
 export const routes = [
   {
     isNavBar: true,
     isExact: true,
+    isDefaultPage:true,
     path: '/',
     name: 'Home',
     component: Home
   },
   {
+    isNavBar: true,
     path: '/login',
     name: 'Login',
-    component: Login
+    isSignup: false,
+    component: LoginContainer
   },
   {
+    isNavBar: true,
     path: '/signup',
     name: 'Signup',
-    component: Signup
+    isSignup: true,
+    component: LoginContainer
   },
   {
     isNavBar: true,

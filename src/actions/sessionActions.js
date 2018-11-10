@@ -10,7 +10,7 @@ export function logIn(params, callBack) {
       dispatch({
         type: LOG_IN,
         payload: {
-          esername: params.username,
+          email: params.email,
           password: params.password,
         }
       })

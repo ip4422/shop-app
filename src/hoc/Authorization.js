@@ -8,20 +8,23 @@ const Authorize = (WrappedComponent) => {
     render() {
       const { isAuthorized } = this.props
       if (!isAuthorized) {
-        return <Redirect to='/login' />
+        return <Redirect to={{
+          pathname: '/login',
+          state: { from: this.props.location },
+        }} />
       }
       return <WrappedComponent {...this.props} />
     }
 
   }
 
-  WithAuthorize.protoTypes = {
+  WithAuthorize.propTypes = {
     isAuthorized: PropTypes.bool,
   }
 
   const mapStateToProps = (state) => (
     {
-      isAuthorized: Boolean(state.user)
+      isAuthorized: Boolean(state.session.user)
     }
   )
 

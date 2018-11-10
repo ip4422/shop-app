@@ -2,10 +2,10 @@ import React from 'react'
 
 const NotFound = () => {
   return(
-    <React.Fragment>
+    <div className='container'>
       <h2>NotFound page</h2>
       <p>under construction</p>
-    </React.Fragment>
+    </div>
   )
 }
 

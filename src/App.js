@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Authorization from './hoc/Authorization'
 import NavigationBar from './components/NavigationBar'
+import Authorization from './hoc/Authorization'
 import { routes } from './routes'
 
 class App extends Component {
