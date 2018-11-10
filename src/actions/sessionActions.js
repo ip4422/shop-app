@@ -25,7 +25,7 @@ export function logIn(params, callBack) {
   }
 }
 
-export function logOut(params) {
+export function logOut() {
   return {
     type: LOG_OUT,
   }

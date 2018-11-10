@@ -1,11 +1,11 @@
 import React from 'react'
 
 const Curt = () => {
-  return(
-    <React.Fragment>
+  return (
+    <div className='container'>
       <h2>Curt page</h2>
       <p>under construction</p>
-    </React.Fragment>
+    </div>
   )
 }
 

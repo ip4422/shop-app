@@ -3,23 +3,37 @@ import { Redirect } from 'react-router'
 import PropTypes from 'prop-types'
 
 class Login extends Component {
-  state = {
-    redirectBack: false,
-    email: '',
-    pasword: '',
-    confirmPassword: '',
-    errorInput: '',
+  constructor(props) {
+    super(props)
+    const { signup } = this.props
+    this.state = {
+      redirectBack: false,
+      email: '',
+      pasword: '',
+      confirmPassword: '',
+      errorInput: '',
+      isSignup: signup,
+    }
+  }
+
+  componentDidUpdate(prevProps){
+    if (this.props.signup !== prevProps.signup) {
+      this.setState(prev =>({
+        ...prev,
+        isSignup: this.props.signup,
+      }));
+    }
   }
 
   handleSubmit = event => {
     event.preventDefault()
-    const { email, password, confirmPassword } = this.state
-    if (password !== confirmPassword) {
+    const { email, password, confirmPassword, isSignup } = this.state
+    if (isSignup && password !== confirmPassword) {
       this.setState(prev => ({
         ...prev,
         errorInput: 'password didn\'t match',
       }))
-      return
+      return null
     }
     this.props.logIn(
       {
@@ -54,10 +68,25 @@ class Login extends Component {
     }
   }
 
+  getConfirmPassword() {
+    return (
+      <div className="form-group">
+        <label htmlFor="InputConfirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          data-field-name={'confirmPassword'}
+          onChange={this.handleChange}
+          className="form-control"
+          id="InputConfirmPassword"
+          placeholder="Confirm Password" />
+      </div>
+    )
+  }
+
   render() {
     const { location } = this.props
     const { from } = location.state || { from: { pathname: '/' } }
-    const { redirectBack } = this.state
+    const { redirectBack, isSignup } = this.state
 
     if (redirectBack) {
       return <Redirect to={from} />
@@ -88,16 +117,7 @@ class Login extends Component {
               id="InputPassword"
               placeholder="Password" />
           </div>
-          <div className="form-group">
-            <label htmlFor="InputConfirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              data-field-name={'confirmPassword'}
-              onChange={this.handleChange}
-              className="form-control"
-              id="InputConfirmPassword"
-              placeholder="Confirm Password" />
-          </div>
+          {isSignup ? this.getConfirmPassword() : ''}
           <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
