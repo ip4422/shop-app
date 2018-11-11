@@ -1,8 +1,12 @@
 import { LOG_IN, LOG_OUT, LOG_IN_FAIL } from '../actions/sessionActions'
+import { user, errorMsg, colors, items, curt } from './initialStore.json'
 
 const initialState = {
-  user: null,
-  errorMsg: '',
+  user,
+  errorMsg,
+  colors,
+  items,
+  curt
 }
 
 export default (state = initialState, action) => {

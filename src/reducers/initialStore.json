@@ -1,0 +1,51 @@
+{
+  "user": {
+    "email": "ya@ya.ru",
+    "password": "1234"
+  },
+  "errorMsg": "",
+  "colors": [
+    "Red",
+    "White",
+    "Black",
+    "Blue",
+    "Yellow",
+    "Green"
+  ],
+  "items": [
+    {
+      "id": "1",
+      "name": "Trejo Priest",
+      "color": "black",
+      "issueDate": "10.22.2018",
+      "price": "4.99",
+      "rating": "4.00",
+      "inStock": "false",
+      "image": "./images/trejo_priest.jpg",
+      "isFiltered": "false"
+    },
+    {
+      "id": "2",
+      "name": "Trejo Bathrobe",
+      "color": "blue",
+      "issueDate": "11.03.2018",
+      "price": "9.95",
+      "rating": "2.00",
+      "inStock": "true",
+      "image": "./images/trejo_bathrobe.jpg",
+      "isFiltered": "false"
+    },
+    {
+      "id": "3",
+      "name": "Alien Tourists",
+      "color": "green",
+      "issueDate": "06.09.2018",
+      "price": "15.99",
+      "rating": "5.00",
+      "inStock": "true",
+      "image": "./images/alien_tourists.jpg",
+      "isFiltered": "false"
+    }
+  ],
+  "curt":[]
+}

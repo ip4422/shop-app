@@ -61,7 +61,7 @@ class Login extends Component {
   getAlert() {
     if (this.state.errorInput) {
       return (
-        <div className="alert alert-danger" role="alert">
+        <div className='alert alert-danger' role='alert'>
           {this.state.errorInput}
         </div>
       )
@@ -70,15 +70,15 @@ class Login extends Component {
 
   getConfirmPassword() {
     return (
-      <div className="form-group">
-        <label htmlFor="InputConfirmPassword">Confirm Password</label>
+      <div className='form-group'>
+        <label htmlFor='InputConfirmPassword'>Confirm Password</label>
         <input
-          type="password"
+          type='password'
           data-field-name={'confirmPassword'}
           onChange={this.handleChange}
-          className="form-control"
-          id="InputConfirmPassword"
-          placeholder="Confirm Password" />
+          className='form-control'
+          id='InputConfirmPassword'
+          placeholder='Confirm Password' />
       </div>
     )
   }
@@ -97,28 +97,28 @@ class Login extends Component {
         {this.getAlert()}
         <form onSubmit={this.handleSubmit}>
           <div className='form-group'>
-            <label htmlFor="InputEmail">Email address</label>
+            <label htmlFor='InputEmail'>Email address</label>
             <input
-              type="email"
+              type='email'
               data-field-name={'email'}
               onChange={this.handleChange}
-              className="form-control"
-              id="InputEmail"
-              aria-describedby="emailHelp"
-              placeholder="Enter email" />
+              className='form-control'
+              id='InputEmail'
+              aria-describedby='emailHelp'
+              placeholder='Enter email' />
           </div>
-          <div className="form-group">
-            <label htmlFor="InputPassword">Password</label>
+          <div className='form-group'>
+            <label htmlFor='InputPassword'>Password</label>
             <input
-              type="password"
+              type='password'
               data-field-name={'password'}
               onChange={this.handleChange}
-              className="form-control"
-              id="InputPassword"
-              placeholder="Password" />
+              className='form-control'
+              id='InputPassword'
+              placeholder='Password' />
           </div>
           {isSignup ? this.getConfirmPassword() : ''}
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type='submit' className='btn btn-primary'>Submit</button>
         </form>
       </div>
     )

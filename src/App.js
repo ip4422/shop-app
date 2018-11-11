@@ -16,13 +16,13 @@ class App extends Component {
       <Router>
         <React.Fragment>
           <header>
-            <div className="container">
+            <div className='container'>
               <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-                  <span className="navbar-toggler-icon"></span>
+                <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarToggler' aria-controls='navbarToggler' aria-expanded='false' aria-label='Toggle navigation'>
+                  <span className='navbar-toggler-icon'></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarToggler">
-                  <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+                <div className='collapse navbar-collapse' id='navbarToggler'>
+                  <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>
                     <li className='nav-item'>
                       <Link className='nav-link' to='/'>Home</Link>
                     </li>
@@ -47,14 +47,14 @@ class App extends Component {
             </div>
           </header>
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={LoginContainer} />
-            <Route path="/signup" render={props => (
+            <Route exact path='/' component={Home} />
+            <Route path='/login' component={LoginContainer} />
+            <Route path='/signup' render={props => (
               <LoginContainer {...props} signup={true} />
             )} />
-            <PrivateRoute path="/search" component={SearchContainer} />
-            <PrivateRoute path="/curt" component={Curt} />
-            <Route path="/logout" component={LogoutContainer} />
+            <PrivateRoute path='/search' component={SearchContainer} />
+            <PrivateRoute path='/curt' component={Curt} />
+            <Route path='/logout' component={LogoutContainer} />
             <Route component={NotFound} />
           </Switch>
 

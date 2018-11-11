@@ -1,0 +1,16 @@
+.input-group {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.form-control_left-border {
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.form-control_right-border {
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+}

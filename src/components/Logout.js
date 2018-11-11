@@ -21,7 +21,7 @@ const Logout = ({ logOut, user }) => {
   return (
     <div className='container'>
       {getUserInfo()}
-      <button type="button" className="btn btn-outline-primary" onClick={logOut}>Logout page</button>
+      <button type='button' className='btn btn-outline-primary' onClick={logOut}>Logout page</button>
     </div>
   )
 }
