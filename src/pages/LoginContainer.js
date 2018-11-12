@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { logIn } from '../actions/sessionActions'
 import Login from '../components/Login'
 
+//TODO: переназвать LoginPage папку переименовать в Pages
 class LoginContainer extends React.Component {
   render() {
     const { user } = this.props

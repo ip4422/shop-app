@@ -25,6 +25,7 @@ class Login extends Component {
     }
   }
 
+  //TODO: сдалть с номрмальной библиотекой с кодир-раскодир или проверять пароли прямо захэшированными лучше.
   /*eslint-disable*/
   hash(s) {
     /* Simple hash function. */
@@ -109,6 +110,7 @@ class Login extends Component {
       return <Redirect to={from} />
     }
 
+    //TODO: сделать проверку мыла на корректность
     return (
       <div className='container'>
         {this.getAlert()}

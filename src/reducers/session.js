@@ -52,3 +52,11 @@ export default (state = initialState, action) => {
       return state;
   }
 }
+
+// селектор
+
+//TODO: взять из state все карточки. взять фильтры из state(отправлять их диспатчем).  применить их к списку карточек. вернуть получившийся список из функции
+// экспортим
+export function selectCards(state) {
+// return 
+}

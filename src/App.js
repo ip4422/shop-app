@@ -2,15 +2,17 @@ import React, { Component } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import Home from './components/Home'
-import Curt from './components/Curt'
-import LoginContainer from './containers/LoginContainer'
-import SearchContainer from './containers/SearchContainer'
-import PrivateRoute from './containers/PrivateRoute'
+import Cart from './components/Cart'
+import LoginContainer from './pages/LoginContainer'
+import SearchContainer from './pages/SearchContainer'
+import PrivateRoute from './pages/PrivateRoute'
 import NotFound from './components/NotFound'
-import LogoutContainer from './containers/LogoutContainer'
+import LogoutContainer from './pages/LogoutContainer'
 
 
 class App extends Component {
+  //TODO: все лишнее отрезать
+  //TODO: вес из хедера в компонент NavBar вынести. В нем вынести компонент NavBarItem
   render() {
     return (
       <Router>
@@ -39,7 +41,7 @@ class App extends Component {
                       <Link className='nav-link' to='/logout'>Logout</Link>
                     </li>
                     <li className='nav-item'>
-                      <Link className='nav-link' to='/curt'>Curt</Link>
+                      <Link className='nav-link' to='/cart'>Cart</Link>
                     </li>
                   </ul>
                 </div>
@@ -47,13 +49,14 @@ class App extends Component {
             </div>
           </header>
           <Switch>
+            {/* //TODO: сделать стартовой страницей SignUp*/}
             <Route exact path='/' component={Home} />
             <Route path='/login' component={LoginContainer} />
             <Route path='/signup' render={props => (
               <LoginContainer {...props} signup={true} />
             )} />
             <PrivateRoute path='/search' component={SearchContainer} />
-            <PrivateRoute path='/curt' component={Curt} />
+            <PrivateRoute path='/cart' component={Cart} />
             <Route path='/logout' component={LogoutContainer} />
             <Route component={NotFound} />
           </Switch>
@@ -62,6 +65,7 @@ class App extends Component {
       </Router>
     );
   }
+  //TODO: все внутри свитча вынести в файл AppRoutes
 }
 
 export default App

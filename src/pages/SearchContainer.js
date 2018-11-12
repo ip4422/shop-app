@@ -11,16 +11,18 @@ class SearchContainer extends React.Component {
       <React.Fragment>
         {items && <Filters {...this.props} />}
         <div className='container'>
-          {items && items.map(item => <Card item={item} key={item.name} />)}
+          {items && items.map(item => <Card item={item} key={item.id} />)}
         </div>
       </React.Fragment>
     )
   }
 }
 
+//TODO: селектор использовать
+
 const mapStateToProps = state => ({
   errorMsg: state.session.errorMsg,
-  items: state.session.items,
+  items: state.session.items,// вместо этого поставить selectCards(state) в state будут лежать и фильтры
   colors: state.session.colors,
 })
 
