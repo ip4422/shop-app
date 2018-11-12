@@ -14,11 +14,11 @@ Has Email and password fields. ANer pressing "Log in" bu.on, auth info checked a
 Allowed for authorized users only. Search page should has item's filter and item's list. When any filter is changed, item's list reloaded according enabled filters. Page shouldn't be reloaded, just item's list. User can add item in the his cart.
 
 Items list should be as static json file. Item's fields
-• Id
-• Name
-• Color (Red, White, Black, Blue, Yellow, Green)
-• Issue date (should be in US format)
-• Price - float (should be in US format)
-• Raiting – float
-• InStock
-• Image
++ Id
++ Name
++ Color (Red, White, Black, Blue, Yellow, Green)
++ Issue date (should be in US format)
++ Price - float (should be in US format)
++ Raiting – float
++ InStock
++ Image
