@@ -1,7 +1,7 @@
-##Internet shopping web application
+## Internet shopping web application
 
-###Sign up page
+### Sign up page
 
-###Log in page
+### Log in page
 
-###Search page
+### Search page
