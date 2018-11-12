@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import 'react-dates/initialize'
-import 'react-dates/lib/css/_datepicker.css'
-import '../css/filters.css'
-import { SingleDatePicker } from 'react-dates'
-import { getBool } from '../helpers/convertion'
+import { getBool } from '../helpers/service'
+import DatePicker from './DatePicker'
+import CheckBoxControl from './CheckBoxControl'
+import AmountControl from './AmountControl'
+import DropDownControl from './DropDownControl'
+
 import moment from 'moment'
 // import debounce from 'lodash/debounce'
 
@@ -15,6 +16,10 @@ const IN_STOCK_ONLY_ID = 'in-stock-only'
 const FROM_AMOUNT_ID = 'from-amount-id'
 const TO_AMOUNT_ID = 'to-amount-id'
 const COLOR_ID = 'color-id'
+
+//TODO: переделать на работу со стором
+
+
 
 class Filters extends Component {
   constructor(props) {
@@ -115,78 +120,38 @@ class Filters extends Component {
     }
   }
 
-  getSelectColor() {
-    return (
-      <select
-        id={COLOR_ID}
-        onChange={this.onChangeHandler}>
-        {this.state.colors.map(value => (
-          <option value={value.toLowerCase()} key={value}>{value}</option>
-        ))}
-      </select>
-    )
-  }
-
   render() {
     return (
       <div className='container'>
         <div className='pt-3 pb-3 mb-3'>
           <div className='container'>
             <div className='row'>
-              <div className='col-4'>
-                <div className='input-group mb-3'>
-                  <div className='input-group-prepend'>
-                    <span className='input-group-text' id='from-date-label'>From:</span>
-                  </div>
-                  <SingleDatePicker
-                    date={this.state.fromDate} // momentPropTypes.momentObj or null
-                    numberOfMonths={1}
-                    isOutsideRange={() => false}
-                    onDateChange={date => this.setState({
-                      fromDate: date,
-                      isFilterChanged: true
-                    })} // PropTypes.func.isRequired
-                    focused={this.state.focusedFromDate} // PropTypes.bool
-                    onFocusChange={({ focused }) => this.setState({ focusedFromDate: focused })} // PropTypes.func.isRequired
-                    id={FROM_DATE_ID} // PropTypes.string.isRequired,
-                  />
-                </div>
-              </div>
-              <div className='col-4'>
-                <div className='input-group mb-3'>
-                  <div className='input-group-prepend'>
-                    <span className='input-group-text' id='to-date-label'>To:</span>
-                  </div>
-                  <SingleDatePicker
-                    date={this.state.toDate} // momentPropTypes.momentObj or null
-                    numberOfMonths={1}
-                    isOutsideRange={() => false}
-                    onDateChange={date => this.setState({
-                      toDate: date,
-                      isFilterChanged: true
-                    })} // PropTypes.func.isRequired
-                    focused={this.state.focusedToDate} // PropTypes.bool
-                    onFocusChange={({ focused }) => this.setState({ focusedToDate: focused })} // PropTypes.func.isRequired
-                    id={TO_DATE_ID} // PropTypes.string.isRequired,
-                  />
-                </div>
-              </div>
-              <div className='col-4'>
-                <div className='input-group mb-3'>
-                  <div className='input-group-prepend'>
-                    <div className='input-group-text'>
-                      <input
-                        type='checkbox'
-                        id={IN_STOCK_ONLY_ID}
-                        aria-label='Checkbox for In Stock only'
-                        onChange={this.onChangeHandler}
-                        checked={this.state.inStockOnly}
-                      />
-                    </div>
-                  </div>
-                  <div className='form-control form-control_left-border text-left bd-highlight'>In Stock only</div>
-                </div>
-              </div>
+              <DatePicker
+                date={this.state.fromDate}
+                onDateChange={date => this.setState({
+                  fromDate: date,
+                  isFilterChanged: true
+                })}
+                focused={this.state.focusedFromDate}
+                onFocusChange={({ focused }) => this.setState({ focusedFromDate: focused })} // PropTypes.func.isRequired
+                id={FROM_DATE_ID}
+              />
+              <DatePicker
+                date={this.state.toDate}
+                onDateChange={date => this.setState({
+                  toDate: date,
+                  isFilterChanged: true
+                })}
+                focused={this.state.focusedToDate}
+                onFocusChange={({ focused }) => this.setState({ focusedToDate: focused })} // PropTypes.func.isRequired
+                id={TO_DATE_ID}
+              />
+              <CheckBoxControl
+                id={IN_STOCK_ONLY_ID}
+                caption={'In Stock only'}
+                onChange={this.onChangeHandler}
+                checked={this.state.inStockOnly}
+              />
             </div>
             <div className='row'>
               <div className='col'>
@@ -194,43 +159,22 @@ class Filters extends Component {
             </div>
             </div>
             <div className='row'>
-              <div className='col-4'>
-                <div className='input-group mb-3'>
-                  <div className='input-group-prepend'>
-                    <span className='input-group-text'>From $</span>
-                  </div>
-                  <input
-                    id={FROM_AMOUNT_ID}
-                    type='text'
-                    className='form-control'
-                    aria-label='Amount (to the nearest dollar)'
-                    onChange={this.onChangeHandler}
-                  />
-                </div>
-              </div>
-              <div className='col-4'>
-                <div className='input-group mb-3'>
-                  <div className='input-group-prepend'>
-                    <span className='input-group-text'>To $</span>
-                  </div>
-                  <input
-                    id={TO_AMOUNT_ID}
-                    type='text'
-                    className='form-control'
-                    aria-label='Amount (to the nearest dollar)'
-                    onChange={this.onChangeHandler}
-                  />
-                </div>
-              </div>
-              <div className='col-4'>
-                <div className='input-group'>
-                  <div className='form-control text-right bd-highlight form-control_right-border' >Color</div>
-                  {/* <input type='text' className='form-control' aria-label='Color Selector' /> */}
-                  <div className='input-group-append'>
-                    {this.getSelectColor()}
-                  </div>
-                </div>
-              </div>
+              <AmountControl
+                id={FROM_AMOUNT_ID}
+                caption={'From'}
+                onChange={this.onChangeHandler}
+              />
+              <AmountControl
+                id={TO_AMOUNT_ID}
+                caption={'To'}
+                onChange={this.onChangeHandler}
+              />
+              <DropDownControl
+                id={COLOR_ID}
+                caption={'Color'}
+                onChange={this.onChangeHandler}
+                items={this.state.colors}
+              />
             </div>
           </div>
         </div>

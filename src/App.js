@@ -3,11 +3,11 @@ import './App.css'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import Home from './components/Home'
 import Cart from './components/Cart'
-import LoginContainer from './pages/LoginContainer'
-import SearchContainer from './pages/SearchContainer'
+import LoginPage from './pages/LoginContainer'
+import SearchPage from './pages/SearchContainer'
 import PrivateRoute from './pages/PrivateRoute'
 import NotFound from './components/NotFound'
-import LogoutContainer from './pages/LogoutContainer'
+import LogoutPage from './pages/LogoutContainer'
 
 
 class App extends Component {
@@ -51,13 +51,13 @@ class App extends Component {
           <Switch>
             {/* //TODO: сделать стартовой страницей SignUp*/}
             <Route exact path='/' component={Home} />
-            <Route path='/login' component={LoginContainer} />
+            <Route path='/login' component={LoginPage} />
             <Route path='/signup' render={props => (
-              <LoginContainer {...props} signup={true} />
+              <LoginPage {...props} signup={true} />
             )} />
-            <PrivateRoute path='/search' component={SearchContainer} />
+            <PrivateRoute path='/search' component={SearchPage} />
             <PrivateRoute path='/cart' component={Cart} />
-            <Route path='/logout' component={LogoutContainer} />
+            <Route path='/logout' component={LogoutPage} />
             <Route component={NotFound} />
           </Switch>
 

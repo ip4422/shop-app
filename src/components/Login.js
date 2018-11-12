@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import PropTypes from 'prop-types'
+import { isValidEmail } from '../helpers/service'
 
 class Login extends Component {
   constructor(props) {
@@ -51,6 +52,13 @@ class Login extends Component {
       this.setState(prev => ({
         ...prev,
         errorInput: 'password didn\'t match',
+      }))
+      return null
+    }
+    if(!isValidEmail(email)){
+      this.setState(prev => ({
+        ...prev,
+        errorInput: 'email address incorrect',
       }))
       return null
     }
@@ -110,7 +118,6 @@ class Login extends Component {
       return <Redirect to={from} />
     }
 
-    //TODO: сделать проверку мыла на корректность
     return (
       <div className='container'>
         {this.getAlert()}

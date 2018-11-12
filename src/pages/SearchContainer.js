@@ -4,7 +4,7 @@ import { setItems } from '../actions/itemsActions';
 import Filters from '../components/Filters'
 import Card from '../components/Card'
 
-class SearchContainer extends React.Component {
+class SearchPage extends React.Component {
   render() {
     const { items } = this.props
     return (
@@ -30,4 +30,4 @@ const mapDispatchToProps = dispatch => ({
   setItems: (items) => dispatch(setItems(items))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPage)

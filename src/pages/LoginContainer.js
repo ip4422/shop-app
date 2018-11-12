@@ -4,7 +4,7 @@ import { logIn } from '../actions/sessionActions'
 import Login from '../components/Login'
 
 //TODO: переназвать LoginPage папку переименовать в Pages
-class LoginContainer extends React.Component {
+class LoginPage extends React.Component {
   render() {
     const { user } = this.props
     if (user.email) {
@@ -28,4 +28,4 @@ const mapDispatchToProps = dispatch => ({
   logIn: (params, callback) => dispatch(logIn(params, callback))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
