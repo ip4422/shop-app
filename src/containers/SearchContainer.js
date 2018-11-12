@@ -1,13 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Search from '../components/Search'
 import { setItems } from '../actions/itemsActions';
+import Filters from '../components/Filters'
+import Card from '../components/Card'
 
 class SearchContainer extends React.Component {
   render() {
-    // const { items, user, colors, errorMsg, setItems } = this.props
-    return <Search {...this.props}/>
-    // return <Search items={items} colors={colors} errorMsg={errorMsg} user={user} setItems={setItems}/>
+    const { items } = this.props
+    return (
+      <React.Fragment>
+        {items && <Filters {...this.props} />}
+        <div className='container'>
+          {items && items.map(item => <Card item={item} key={item.name} />)}
+        </div>
+      </React.Fragment>
+    )
   }
 }
 

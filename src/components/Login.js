@@ -16,14 +16,32 @@ class Login extends Component {
     }
   }
 
-  componentDidUpdate(prevProps){
+  componentDidUpdate(prevProps) {
     if (this.props.signup !== prevProps.signup) {
-      this.setState(prev =>({
+      this.setState(prev => ({
         ...prev,
         isSignup: this.props.signup,
       }));
     }
   }
+
+  /*eslint-disable*/
+  hash(s) {
+    /* Simple hash function. */
+    var a = 1, c = 0, h, o;
+    if (s) {
+      a = 0;
+      /*jshint plusplus:false bitwise:false*/
+      for (h = s.length - 1; h >= 0; h--) {
+        o = s.charCodeAt(h);
+        a = (a << 6 & 268435455) + o + (o << 14);
+        c = a & 266338304;
+        a = c !== 0 ? a ^ c >> 21 : a;
+      }
+    }
+    return String(a);
+  }
+  /*eslint-enable*/
 
   handleSubmit = event => {
     event.preventDefault()
@@ -38,8 +56,7 @@ class Login extends Component {
     this.props.logIn(
       {
         email,
-        //TODO: convert password to hash
-        password,
+        password: this.hash(password),
       },
       () => {
         this.setState({ redirectBack: true })
@@ -126,8 +143,6 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  //TODO: FIX this problem Failed prop type: Login: prop type `logIn` is invalid; it must be a function, usually from the `prop-types` package, but received `undefined`.
-  // logIn: PropTypes.func.isRequiered,
   errorMsg: PropTypes.string,
 }
 

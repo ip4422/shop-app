@@ -4,6 +4,7 @@ import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
 import '../css/filters.css'
 import { SingleDatePicker } from 'react-dates'
+import { getBool } from '../helpers/convertion'
 import moment from 'moment'
 // import debounce from 'lodash/debounce'
 
@@ -18,7 +19,7 @@ const COLOR_ID = 'color-id'
 class Filters extends Component {
   constructor(props) {
     super(props)
-    const { items, user, colors, errorMsg } = this.props
+    const { items, colors, errorMsg } = this.props
     this.state = {
       isFilterChanged: false,
       fromDate: null,
@@ -31,7 +32,6 @@ class Filters extends Component {
       proceTo: null,
       color: null,
       items,
-      user,
       colors,
       errorMsg,
     }
@@ -61,7 +61,7 @@ class Filters extends Component {
     }
 
     // check inStockOnly property
-    if (this.state.inStockOnly && item.inStockOnly !== this.state.inStockOnly) {
+    if (this.state.inStockOnly && getBool(item.inStock) !== this.state.inStockOnly) {
       filtered_item.isFiltered = true
       return filtered_item
     }
@@ -70,13 +70,13 @@ class Filters extends Component {
     if (this.state.priceFrom && (item.price < this.state.priceFrom)) {
       filtered_item.isFiltered = true
       return filtered_item
-    } else if (this.state.priceTo && (item.price < this.state.priceTo)) {
+    } else if (this.state.priceTo && (item.price > this.state.priceTo)) {
       filtered_item.isFiltered = true
       return filtered_item
     }
 
     // check color
-    if (this.state.color && this.state.color === item.color) {
+    if (this.state.color && this.state.color !== item.color) {
       filtered_item.isFiltered = true
       return filtered_item
     }
@@ -140,6 +140,8 @@ class Filters extends Component {
                   </div>
                   <SingleDatePicker
                     date={this.state.fromDate} // momentPropTypes.momentObj or null
+                    numberOfMonths={1}
+                    isOutsideRange={() => false}
                     onDateChange={date => this.setState({
                       fromDate: date,
                       isFilterChanged: true
@@ -157,6 +159,8 @@ class Filters extends Component {
                   </div>
                   <SingleDatePicker
                     date={this.state.toDate} // momentPropTypes.momentObj or null
+                    numberOfMonths={1}
+                    isOutsideRange={() => false}
                     onDateChange={date => this.setState({
                       toDate: date,
                       isFilterChanged: true

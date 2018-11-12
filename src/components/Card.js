@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { getBool } from '../helpers/convertion'
 
 const IMAGE_COL_CLASSES = 'col-xs-6 col-sm-5 col-md-3 col-lg-3'
 const PROPS_COL_CLASSES = 'col-xs-6 col-sm-7 col-md-9 col-lg-9'
@@ -11,9 +12,11 @@ const Card = ({ ...rest }) => {
     console.log('event :', event)
   }
 
-  if (JSON.parse(rest.item.isFiltered.toLowerCase().trim())) {
+  if (getBool(rest.item.isFiltered)) {
     return ''
+
   }
+
   return (
     <div className='card border-secondary mb-3' key={rest.item.name}>
       <div className='card-body text-secondary'>
@@ -51,7 +54,7 @@ const Card = ({ ...rest }) => {
                             type='checkbox'
                             aria-label='Checkbox for In Stock only'
                             onChange={onChangeHandler}
-                            checked={JSON.parse(rest.item.inStock.toLowerCase().trim())}
+                            checked={getBool(rest.item.inStock)}
                           />
                         </div>
                       </div>

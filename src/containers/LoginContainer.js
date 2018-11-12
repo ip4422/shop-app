@@ -6,7 +6,7 @@ import Login from '../components/Login'
 class LoginContainer extends React.Component {
   render() {
     const { user } = this.props
-    if (user) {
+    if (user.email) {
       return (
         <div className='container'>
           <h2>You are logged in, {user.email}</h2>
