@@ -2,7 +2,6 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-//TODO: после успешного логина или регистрации отправлять на страницу поиска
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return(
     <Route
@@ -15,7 +14,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
             to={{
               pathname: '/login',
               state: { from: '/search' },
-              // state: { from: props.location },
             }}
           />
           )}

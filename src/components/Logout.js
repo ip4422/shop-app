@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-//TODO: после логаута падают ошибки андефайн. Надо очищать поля, а не присваивать null
 const Logout = ({ logOut, user }) => {
   const getUserInfo = () => {
     if (user.email) {
