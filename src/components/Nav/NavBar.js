@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-
 import NavBarItem from './NavBarItem'
 
 class NavBar extends Component {

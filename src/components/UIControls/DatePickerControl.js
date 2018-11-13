@@ -2,11 +2,11 @@
 import React, { Component } from 'react';
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
-import '../css/filters.css'
+import '../../css/filters.css'
 import { SingleDatePicker } from 'react-dates'
 
 
-class DatePicker extends Component {
+class DatePickerControl extends Component {
   render() {
     const { date, onDateChange, focused, onFocusChange, id } = this.props
     return (
@@ -31,4 +31,4 @@ class DatePicker extends Component {
   }
 }
 
-export default DatePicker;
+export default DatePickerControl;

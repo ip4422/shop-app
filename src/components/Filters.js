@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { getBool } from '../helpers/service'
-import DatePicker from './DatePicker'
-import CheckBoxControl from './CheckBoxControl'
-import AmountControl from './AmountControl'
-import DropDownControl from './DropDownControl'
+import DatePickerControl from './UIControls/DatePickerControl'
+import CheckBoxControl from './UIControls/CheckBoxControl'
+import AmountControl from './UIControls/AmountControl'
+import DropDownControl from './UIControls/DropDownControl'
 
 import moment from 'moment'
 // import debounce from 'lodash/debounce'
@@ -126,7 +126,7 @@ class Filters extends Component {
         <div className='pt-3 pb-3 mb-3'>
           <div className='container'>
             <div className='row'>
-              <DatePicker
+              <DatePickerControl
                 date={this.state.fromDate}
                 onDateChange={date => this.setState({
                   fromDate: date,
@@ -136,7 +136,7 @@ class Filters extends Component {
                 onFocusChange={({ focused }) => this.setState({ focusedFromDate: focused })} // PropTypes.func.isRequired
                 id={FROM_DATE_ID}
               />
-              <DatePicker
+              <DatePickerControl
                 date={this.state.toDate}
                 onDateChange={date => this.setState({
                   toDate: date,

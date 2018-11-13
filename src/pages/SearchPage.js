@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { setItems } from '../actions/itemsActions';
 import Filters from '../components/Filters'
-import Card from '../components/Card'
+import Card from '../components/Card/Card'
 
 class SearchPage extends React.Component {
   render() {

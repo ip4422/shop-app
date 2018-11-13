@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getBool } from '../helpers/service'
+import { getBool } from '../../helpers/service'
 
 class CheckBoxControl extends Component {
   render() {

@@ -6,9 +6,9 @@ import { isValidEmail } from '../helpers/service'
 class Login extends Component {
   constructor(props) {
     super(props)
-    const { signup } = this.props
+    const { signup, user } = this.props
     this.state = {
-      redirectBack: false,
+      redirectBack: Boolean(user.email),
       email: '',
       pasword: '',
       confirmPassword: '',
@@ -111,7 +111,7 @@ class Login extends Component {
 
   render() {
     const { location } = this.props
-    const { from } = location.state || { from: { pathname: '/' } }
+    const { from } = location.state || { from: { pathname: '/search' } }
     const { redirectBack, isSignup } = this.state
 
     if (redirectBack) {

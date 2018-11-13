@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Avatar from './Avatar'
+import CardAvatar from './CardAvatar'
 import CardContentItem from './CardContentItem'
-import CheckBoxControl from './CheckBoxControl'
-import ButtonControl from './ButtonControl'
+import CheckBoxControl from '../UIControls/CheckBoxControl'
+import ButtonControl from '../UIControls/ButtonControl'
 
 const PROPS_COL_CLASSES = 'col-xs-6 col-sm-7 col-md-9 col-lg-9'
 
@@ -21,7 +21,7 @@ class Card extends PureComponent {
       <div className='card border-secondary mb-3' key={item.id}>
         <div className='card-body'>
           <div className='row'>
-            <Avatar imageSrc={item.image} name={item.name} />
+            <CardAvatar imageSrc={item.image} name={item.name} />
             <div className={PROPS_COL_CLASSES}>
               <div className='container'>
                 <div className='row pt-3'>

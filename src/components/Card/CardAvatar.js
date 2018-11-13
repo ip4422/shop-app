@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 const IMAGE_COL_CLASSES = 'col-xs-6 col-sm-5 col-md-3 col-lg-3'
 
-class Avatar extends Component {
+class CardAvatar extends Component {
   render() {
     const {imageSrc, name} = this.props
     return (
@@ -13,4 +13,4 @@ class Avatar extends Component {
   }
 }
 
-export default Avatar
+export default CardAvatar

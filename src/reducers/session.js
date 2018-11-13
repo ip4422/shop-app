@@ -28,7 +28,10 @@ export default (state = initialState, action) => {
     case LOG_OUT:
       return {
         ...state,
-        user: null,
+        user: {
+          email: '',
+          password: '',
+        },
         errorMsg: '',
       }
     case LOG_IN_FAIL:

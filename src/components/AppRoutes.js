@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
-import LoginPage from '../pages/LoginContainer'
-import SearchPage from '../pages/SearchContainer'
+import LoginPage from '../pages/LoginPage'
+import SearchPage from '../pages/SearchPage'
 import PrivateRoute from '../pages/PrivateRoute'
-import LogoutPage from '../pages/LogoutContainer'
+import LogoutPage from '../pages/LogoutPage'
 import NotFound from './NotFound'
 import Home from './Home'
 import Cart from './Cart'
@@ -12,7 +12,7 @@ import Cart from './Cart'
 class AppRoutes extends Component {
   render() {
     return (
-      < Switch >
+      <Switch>
         {/* //TODO: сделать стартовой страницей SignUp*/}
         <Route exact path='/' component={Home} />
         <Route path='/login' component={LoginPage} />
@@ -23,7 +23,7 @@ class AppRoutes extends Component {
         <PrivateRoute path='/cart' component={Cart} />
         <Route path='/logout' component={LogoutPage} />
         <Route component={NotFound} />
-      </Switch >
+      </Switch>
 
     );
   }
