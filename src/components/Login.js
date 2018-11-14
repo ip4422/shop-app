@@ -2,98 +2,88 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import PropTypes from 'prop-types'
 import { isValidEmail, hashCode } from '../helpers/service'
+import EmailField from './EmailField'
+import PasswordField from './PasswordField'
 
 class Login extends Component {
   constructor(props) {
     super(props)
-    const { signup, user } = this.props
+    const { isSignup, admin, errorMsg, isAuthorized } = this.props
     this.state = {
-      redirectBack: Boolean(user.email),
       email: '',
-      pasword: '',
+      password: '',
       confirmPassword: '',
-      errorInput: '',
-      isSignup: signup,
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.signup !== prevProps.signup) {
-      this.setState(prev => ({
-        ...prev,
-        isSignup: this.props.signup,
-      }));
+      errorMsg,
+      isSignup,
+      admin,
+      redirectBack: isAuthorized,
     }
   }
 
   handleSubmit = event => {
     event.preventDefault()
-    const { email, password, confirmPassword, isSignup } = this.state
+    const { email, password, confirmPassword } = this.state
+    const { isSignup, logIn, signUp } = this.props
     if (isSignup && password !== confirmPassword) {
       this.setState(prev => ({
         ...prev,
-        errorInput: 'password didn\'t match',
+        errorMsg: 'password didn\'t match',
       }))
       return null
     }
     if (!isValidEmail(email)) {
       this.setState(prev => ({
         ...prev,
-        errorInput: 'email address incorrect',
+        errorMsg: 'email address incorrect',
       }))
       return null
     }
-    this.props.logIn(
-      {
-        email,
-        password: hashCode(password),
-      },
-      () => {
-        this.setState({ redirectBack: true })
-      }
-    )
+    if (isSignup) {
+      signUp(
+        {
+          email,
+          password: hashCode(password),
+        },
+        () => {
+          this.setState({ redirectBack: true })
+        })
+    } else {
+      // pass 'admin' cause we have no server part authorization
+      logIn(
+        {
+          email,
+          password: hashCode(password),
+          admin: this.state.admin,
+        },
+        () => {
+          this.setState({ redirectBack: true })
+        })
+    }
   }
 
   handleChange = event => {
     const value = event.currentTarget.value
-    const fieldName = event.currentTarget.dataset.fieldName
+    const name = event.currentTarget.name
     this.setState(prev => ({
       ...prev,
-      [fieldName]: value,
+      [name]: value,
     })
-
     )
   }
 
-  getAlert() {
-    if (this.state.errorInput) {
-      return (
-        <div className='alert alert-danger' role='alert'>
-          {this.state.errorInput}
-        </div>
-      )
-    }
-  }
-
-  getConfirmPassword() {
+  getAlert(errorMsg) {
     return (
-      <div className='form-group'>
-        <label htmlFor='InputConfirmPassword'>Confirm Password</label>
-        <input
-          type='password'
-          data-field-name={'confirmPassword'}
-          onChange={this.handleChange}
-          className='form-control'
-          name='InputConfirmPassword'
-          placeholder='Confirm Password' />
+      <div className='alert alert-danger' role='alert'>
+        {errorMsg}
       </div>
     )
   }
 
   render() {
-    const { location } = this.props
+    const errorMsg = this.props.errorMsg || this.state.errorMsg
+    const { location, isSignup } = this.props
     const { from } = location.state || { from: { pathname: '/search' } }
-    const { redirectBack, isSignup } = this.state
+    const { redirectBack } = this.state
 
     if (redirectBack) {
       return <Redirect to={from} />
@@ -101,30 +91,14 @@ class Login extends Component {
 
     return (
       <div className='container'>
-        {this.getAlert()}
+        {errorMsg && this.getAlert(errorMsg)}
         <form onSubmit={this.handleSubmit}>
-          <div className='form-group'>
-            <label htmlFor='InputEmail'>Email address</label>
-            <input
-              type='email'
-              data-field-name={'email'}
-              onChange={this.handleChange}
-              className='form-control'
-              name='InputEmail'
-              aria-describedby='emailHelp'
-              placeholder='Enter email' />
-          </div>
-          <div className='form-group'>
-            <label htmlFor='InputPassword'>Password</label>
-            <input
-              type='password'
-              data-field-name={'password'}
-              onChange={this.handleChange}
-              className='form-control'
-              name='InputPassword'
-              placeholder='Password' />
-          </div>
-          {isSignup ? this.getConfirmPassword() : ''}
+          <EmailField onChange={this.handleChange} />
+          <PasswordField onChange={this.handleChange} caption={'Password'} name={'password'} />
+          {isSignup
+            ?
+            <PasswordField onChange={this.handleChange} caption={'Confirm Password'} name={'confirmPassword'} />
+            : ''}
           <button type='submit' className='btn btn-primary'>Submit</button>
         </form>
       </div>
