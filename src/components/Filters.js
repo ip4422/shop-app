@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import 'react-dates/initialize'
-import 'react-dates/lib/css/_datepicker.css'
-import '../css/filters.css'
-import { SingleDatePicker } from 'react-dates'
-import { getBool } from '../helpers/convertion'
-import moment from 'moment'
-// import debounce from 'lodash/debounce'
-
+import DatePicker from './DatePicker'
+import CheckBox from './CheckBox'
+import Amount from './Amount'
+import DropDown from './DropDown'
 
 const FROM_DATE_ID = 'from-date-id'
 const TO_DATE_ID = 'to-date-id'
@@ -19,112 +15,45 @@ const COLOR_ID = 'color-id'
 class Filters extends Component {
   constructor(props) {
     super(props)
-    const { items, colors, errorMsg } = this.props
+    const { colors, errorMsg, setFilter, filter } = this.props
     this.state = {
-      isFilterChanged: false,
-      fromDate: null,
-      date: null,
-      toDate: null,
       focusedFromDate: null,
       focusedToDate: null,
-      inStockOnly: false,
-      priceFrom: null,
-      proceTo: null,
-      color: null,
-      items,
+      fromDate:filter.fromDate,
+      toDate:filter.toDate,
+      filter,
       colors,
       errorMsg,
-    }
-    this.onChangeHandler = this.onChangeHandler.bind(this)
-    // this.onChangeHandlerDebounced = debounce(this.onChangeHandler,400)
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.state.isFilterChanged) {
-      this.setState({ isFilterChanged: false })
-      this.props.setItems(this.state.items.map(item => this.applyFilter(item)))
+      setFilter,
     }
   }
 
-  applyFilter(item) {
-    let filtered_item = item
-    filtered_item.isFiltered = false
-
-    // compare date interval
-    const itemDate = moment(item.issueDate, 'MM-DD-YYYY')
-    if (this.state.fromDate && itemDate.diff(this.state.fromDate) < 0) {
-      filtered_item.isFiltered = true
-      return filtered_item
-    } else if (this.state.toDate && this.state.toDate.diff(itemDate) < 0) {
-      filtered_item.isFiltered = true
-      return filtered_item
-    }
-
-    // check inStockOnly property
-    if (this.state.inStockOnly && getBool(item.inStock) !== this.state.inStockOnly) {
-      filtered_item.isFiltered = true
-      return filtered_item
-    }
-
-    // check price range
-    if (this.state.priceFrom && (item.price < this.state.priceFrom)) {
-      filtered_item.isFiltered = true
-      return filtered_item
-    } else if (this.state.priceTo && (item.price > this.state.priceTo)) {
-      filtered_item.isFiltered = true
-      return filtered_item
-    }
-
-    // check color
-    if (this.state.color && this.state.color !== item.color) {
-      filtered_item.isFiltered = true
-      return filtered_item
-    }
-    return filtered_item
-  }
-
-  onChangeHandler(event) {
-    const fieldName = event.currentTarget.id
+  onChangeHandler = (event) => {
+    const fieldName = event.currentTarget.name
     switch (fieldName) {
       case IN_STOCK_ONLY_ID:
-        this.setState({
+        this.state.setFilter({
           inStockOnly: event.currentTarget.checked,
-          isFilterChanged: true
         })
         break
       case COLOR_ID:
-        this.setState({
+        this.state.setFilter({
           color: event.currentTarget.value,
-          isFilterChanged: true
         })
         break
       case FROM_AMOUNT_ID:
-        this.setState({
+        this.state.setFilter({
           priceFrom: parseFloat(event.currentTarget.value),
-          isFilterChanged: true
         })
         break
       case TO_AMOUNT_ID:
-        this.setState({
+        this.state.setFilter({
           priceTo: parseFloat(event.currentTarget.value),
-          isFilterChanged: true
         })
         break
       default:
         break
     }
-  }
-
-  getSelectColor() {
-    return (
-      <select
-        id={COLOR_ID}
-        onChange={this.onChangeHandler}>
-        {this.state.colors.map(value => (
-          <option value={value.toLowerCase()} key={value}>{value}</option>
-        ))}
-      </select>
-    )
   }
 
   render() {
@@ -133,104 +62,32 @@ class Filters extends Component {
         <div className='pt-3 pb-3 mb-3'>
           <div className='container'>
             <div className='row'>
-              <div className='col-4'>
-                <div className='input-group mb-3'>
-                  <div className='input-group-prepend'>
-                    <span className='input-group-text' id='from-date-label'>From:</span>
-                  </div>
-                  <SingleDatePicker
-                    date={this.state.fromDate} // momentPropTypes.momentObj or null
-                    numberOfMonths={1}
-                    isOutsideRange={() => false}
-                    onDateChange={date => this.setState({
-                      fromDate: date,
-                      isFilterChanged: true
-                    })} // PropTypes.func.isRequired
-                    focused={this.state.focusedFromDate} // PropTypes.bool
-                    onFocusChange={({ focused }) => this.setState({ focusedFromDate: focused })} // PropTypes.func.isRequired
-                    id={FROM_DATE_ID} // PropTypes.string.isRequired,
-                  />
-                </div>
-              </div>
-              <div className='col-4'>
-                <div className='input-group mb-3'>
-                  <div className='input-group-prepend'>
-                    <span className='input-group-text' id='to-date-label'>To:</span>
-                  </div>
-                  <SingleDatePicker
-                    date={this.state.toDate} // momentPropTypes.momentObj or null
-                    numberOfMonths={1}
-                    isOutsideRange={() => false}
-                    onDateChange={date => this.setState({
-                      toDate: date,
-                      isFilterChanged: true
-                    })} // PropTypes.func.isRequired
-                    focused={this.state.focusedToDate} // PropTypes.bool
-                    onFocusChange={({ focused }) => this.setState({ focusedToDate: focused })} // PropTypes.func.isRequired
-                    id={TO_DATE_ID} // PropTypes.string.isRequired,
-                  />
-                </div>
-              </div>
-              <div className='col-4'>
-                <div className='input-group mb-3'>
-                  <div className='input-group-prepend'>
-                    <div className='input-group-text'>
-                      <input
-                        type='checkbox'
-                        id={IN_STOCK_ONLY_ID}
-                        aria-label='Checkbox for In Stock only'
-                        onChange={this.onChangeHandler}
-                        checked={this.state.inStockOnly}
-                      />
-                    </div>
-                  </div>
-                  <div className='form-control form-control_left-border text-left bd-highlight'>In Stock only</div>
-                </div>
-              </div>
+              <DatePicker
+                date={this.state.fromDate}
+                onDateChange={date => {
+                  this.state.setFilter({ fromDate: date, })
+                  this.setState({ fromDate: date, })
+                }}
+                focused={this.state.focusedFromDate}
+                onFocusChange={({ focused }) => this.setState({ focusedFromDate: focused })} // PropTypes.func.isRequired
+                id={FROM_DATE_ID}
+              />
+              <DatePicker
+                date={this.state.toDate}
+                onDateChange={date => {
+                  this.state.setFilter({ ToDate: date, })
+                  this.setState({ ToDate: date, })
+                }}
+                focused={this.state.focusedToDate}
+                onFocusChange={({ focused }) => this.setState({ focusedToDate: focused })} // PropTypes.func.isRequired
+                id={TO_DATE_ID}
+              />
+              <CheckBox name={IN_STOCK_ONLY_ID} caption={'In Stock only'} onChange={this.onChangeHandler} checked={this.state.filter.inStockOnly} />
             </div>
-            <div className='row'>
-              <div className='col'>
-                Price
-            </div>
-            </div>
-            <div className='row'>
-              <div className='col-4'>
-                <div className='input-group mb-3'>
-                  <div className='input-group-prepend'>
-                    <span className='input-group-text'>From $</span>
-                  </div>
-                  <input
-                    id={FROM_AMOUNT_ID}
-                    type='text'
-                    className='form-control'
-                    aria-label='Amount (to the nearest dollar)'
-                    onChange={this.onChangeHandler}
-                  />
-                </div>
-              </div>
-              <div className='col-4'>
-                <div className='input-group mb-3'>
-                  <div className='input-group-prepend'>
-                    <span className='input-group-text'>To $</span>
-                  </div>
-                  <input
-                    id={TO_AMOUNT_ID}
-                    type='text'
-                    className='form-control'
-                    aria-label='Amount (to the nearest dollar)'
-                    onChange={this.onChangeHandler}
-                  />
-                </div>
-              </div>
-              <div className='col-4'>
-                <div className='input-group'>
-                  <div className='form-control text-right bd-highlight form-control_right-border' >Color</div>
-                  {/* <input type='text' className='form-control' aria-label='Color Selector' /> */}
-                  <div className='input-group-append'>
-                    {this.getSelectColor()}
-                  </div>
-                </div>
-              </div>
+            <div className='row'> <div className='col'> Price </div> </div> <div className='row'>
+              <Amount name={FROM_AMOUNT_ID} caption={'From'} onChange={this.onChangeHandler} /> 
+              <Amount name={TO_AMOUNT_ID} caption={'To'} onChange={this.onChangeHandler} />
+              <DropDown name={COLOR_ID} caption={'Color'} onChange={this.onChangeHandler} items={this.state.colors} />
             </div>
           </div>
         </div>
@@ -241,6 +98,7 @@ class Filters extends Component {
 
 Filters.propTypes = {
   items: PropTypes.array.isRequired,
+  setFilter: PropTypes.func.isRequired,
   colors: PropTypes.array.isRequired,
 }
 

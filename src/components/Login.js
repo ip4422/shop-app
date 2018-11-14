@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import PropTypes from 'prop-types'
+import { isValidEmail } from '../helpers/service'
 
 class Login extends Component {
   constructor(props) {
     super(props)
-    const { signup } = this.props
+    const { signup, user } = this.props
     this.state = {
-      redirectBack: false,
+      redirectBack: Boolean(user.email),
       email: '',
       pasword: '',
       confirmPassword: '',
@@ -25,21 +26,22 @@ class Login extends Component {
     }
   }
 
+  //TODO: сдалть с номрмальной библиотекой с кодир-раскодир или проверять пароли прямо захэшированными лучше.
   /*eslint-disable*/
-  hash(s) {
+  hash(pass) {
     /* Simple hash function. */
-    var a = 1, c = 0, h, o;
-    if (s) {
-      a = 0;
+    let a = 1, c = 0, h, o
+    if (pass) {
+      a = 0
       /*jshint plusplus:false bitwise:false*/
-      for (h = s.length - 1; h >= 0; h--) {
-        o = s.charCodeAt(h);
-        a = (a << 6 & 268435455) + o + (o << 14);
-        c = a & 266338304;
-        a = c !== 0 ? a ^ c >> 21 : a;
+      for (h = pass.length - 1; h >= 0; h--) {
+        o = pass.charCodeAt(h)
+        a = (a << 6 & 268435455) + o + (o << 14)
+        c = a & 266338304
+        a = c !== 0 ? a ^ c >> 21 : a
       }
     }
-    return String(a);
+    return String(a)
   }
   /*eslint-enable*/
 
@@ -50,6 +52,13 @@ class Login extends Component {
       this.setState(prev => ({
         ...prev,
         errorInput: 'password didn\'t match',
+      }))
+      return null
+    }
+    if (!isValidEmail(email)) {
+      this.setState(prev => ({
+        ...prev,
+        errorInput: 'email address incorrect',
       }))
       return null
     }
@@ -94,7 +103,7 @@ class Login extends Component {
           data-field-name={'confirmPassword'}
           onChange={this.handleChange}
           className='form-control'
-          id='InputConfirmPassword'
+          name='InputConfirmPassword'
           placeholder='Confirm Password' />
       </div>
     )
@@ -102,7 +111,7 @@ class Login extends Component {
 
   render() {
     const { location } = this.props
-    const { from } = location.state || { from: { pathname: '/' } }
+    const { from } = location.state || { from: { pathname: '/search' } }
     const { redirectBack, isSignup } = this.state
 
     if (redirectBack) {
@@ -120,7 +129,7 @@ class Login extends Component {
               data-field-name={'email'}
               onChange={this.handleChange}
               className='form-control'
-              id='InputEmail'
+              name='InputEmail'
               aria-describedby='emailHelp'
               placeholder='Enter email' />
           </div>
@@ -131,7 +140,7 @@ class Login extends Component {
               data-field-name={'password'}
               onChange={this.handleChange}
               className='form-control'
-              id='InputPassword'
+              name='InputPassword'
               placeholder='Password' />
           </div>
           {isSignup ? this.getConfirmPassword() : ''}

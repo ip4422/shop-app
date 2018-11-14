@@ -1,10 +1,11 @@
 {
   "user": {
-    "email": "",
-    "password": ""
+    "email": "ya@ya.ru",
+    "password": "123"
   },
   "errorMsg": "",
   "colors": [
+    "",
     "Red",
     "White",
     "Black",
@@ -47,5 +48,13 @@
       "isFiltered": "false"
     }
   ],
-  "curt":[]
+  "filter": {
+    "fromDate": null,
+    "toDate": null,
+    "inStockOnly": false,
+    "priceFrom": null,
+    "proceTo": null,
+    "color": null
+  },
+  "cart": []
 }

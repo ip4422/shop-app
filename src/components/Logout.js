@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const Logout = ({ logOut, user }) => {
   const getUserInfo = () => {
-    if (user) {
+    if (user.email) {
       return (
         <div>
           <p>You are logged in, {user.email}</p>
