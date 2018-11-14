@@ -22,10 +22,10 @@ class SearchPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  errorMsg: state.session.errorMsg,
-  items: selectItems(state),
   colors: state.productStore.colors,
-  filters: state.productStore.filters,
+  filter: state.productStore.filter,
+  items: selectItems(state),
+  errorMsg: state.session.errorMsg,
 })
 
 const mapDispatchToProps = dispatch => ({

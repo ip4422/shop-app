@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import DatePickerControl from './UIControls/DatePickerControl'
-import CheckBoxControl from './UIControls/CheckBoxControl'
-import AmountControl from './UIControls/AmountControl'
-import DropDownControl from './UIControls/DropDownControl'
+import DatePicker from './DatePicker'
+import CheckBox from './CheckBox'
+import Amount from './Amount'
+import DropDown from './DropDown'
 // import debounce from 'lodash/debounce'
-
 
 const FROM_DATE_ID = 'from-date-id'
 const TO_DATE_ID = 'to-date-id'
@@ -14,31 +13,22 @@ const FROM_AMOUNT_ID = 'from-amount-id'
 const TO_AMOUNT_ID = 'to-amount-id'
 const COLOR_ID = 'color-id'
 
-//TODO: обработать сохраненные в сторе фильтры
-
 class Filters extends Component {
   constructor(props) {
     super(props)
-    const { colors, errorMsg, setFilter } = this.props
+    const { colors, errorMsg, setFilter, filter } = this.props
     this.state = {
-      fromDate: null,
-      date: null,
-      toDate: null,
       focusedFromDate: null,
       focusedToDate: null,
-      inStockOnly: false,
-      priceFrom: null,
-      proceTo: null,
-      color: null,
+      filter,
       colors,
       errorMsg,
       setFilter,
     }
-    // this.onChangeHandlerDebounced = debounce(this.onChangeHandler,400)
   }
 
   onChangeHandler = (event) => {
-    const fieldName = event.currentTarget.id
+    const fieldName = event.currentTarget.name
     switch (fieldName) {
       case IN_STOCK_ONLY_ID:
         this.state.setFilter({
@@ -71,55 +61,32 @@ class Filters extends Component {
         <div className='pt-3 pb-3 mb-3'>
           <div className='container'>
             <div className='row'>
-              <DatePickerControl
-                date={this.state.fromDate}
+              <DatePicker
+                date={this.state.filter.fromDate}
                 onDateChange={date => {
                   this.state.setFilter({ fromDate: date, })
                   this.setState({ fromDate: date, })
                 }}
                 focused={this.state.focusedFromDate}
                 onFocusChange={({ focused }) => this.setState({ focusedFromDate: focused })} // PropTypes.func.isRequired
-                id={FROM_DATE_ID}
+                name={FROM_DATE_ID}
               />
-              <DatePickerControl
-                date={this.state.toDate}
+              <DatePicker
+                date={this.state.filter.toDate}
                 onDateChange={date => {
                   this.state.setFilter({ ToDate: date, })
                   this.setState({ ToDate: date, })
                 }}
                 focused={this.state.focusedToDate}
                 onFocusChange={({ focused }) => this.setState({ focusedToDate: focused })} // PropTypes.func.isRequired
-                id={TO_DATE_ID}
+                name={TO_DATE_ID}
               />
-              <CheckBoxControl
-                id={IN_STOCK_ONLY_ID}
-                caption={'In Stock only'}
-                onChange={this.onChangeHandler}
-                checked={this.state.inStockOnly}
-              />
+              <CheckBox name={IN_STOCK_ONLY_ID} caption={'In Stock only'} onChange={this.onChangeHandler} checked={this.state.filter.inStockOnly} />
             </div>
-            <div className='row'>
-              <div className='col'>
-                Price
-            </div>
-            </div>
-            <div className='row'>
-              <AmountControl
-                id={FROM_AMOUNT_ID}
-                caption={'From'}
-                onChange={this.onChangeHandler}
-              />
-              <AmountControl
-                id={TO_AMOUNT_ID}
-                caption={'To'}
-                onChange={this.onChangeHandler}
-              />
-              <DropDownControl
-                id={COLOR_ID}
-                caption={'Color'}
-                onChange={this.onChangeHandler}
-                items={this.state.colors}
-              />
+            <div className='row'> <div className='col'> Price </div> </div> <div className='row'>
+              <Amount name={FROM_AMOUNT_ID} caption={'From'} onChange={this.onChangeHandler} /> 
+              <Amount name={TO_AMOUNT_ID} caption={'To'} onChange={this.onChangeHandler} />
+              <DropDown name={COLOR_ID} caption={'Color'} onChange={this.onChangeHandler} items={this.state.colors} />
             </div>
           </div>
         </div>

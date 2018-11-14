@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { getBool } from '../../helpers/service'
+import { getBool } from '../helpers/service'
 
-class CheckBoxControl extends Component {
+class CheckBox extends Component {
   render() {
-    const { caption, value, onChange, id } = this.props
+    const { caption, value, onChange, name } = this.props
     return (
       <div className='col-3'>
         <div className='input-group mb-3'>
           <div className='input-group-prepend'>
             <div className='input-group-text'>
-              {id ? <input
+              {name ? <input
                 type='checkbox'
-                id={id}
+                id={name}
                 aria-label={`Checkbox for ${caption}`}
                 onChange={onChange}
                 checked={getBool(value)}
@@ -33,8 +33,8 @@ class CheckBoxControl extends Component {
   }
 }
 
-CheckBoxControl.propTypes={
+CheckBox.propTypes={
   onChange: PropTypes.func.isRequired,
 }
 
-export default CheckBoxControl
+export default CheckBox

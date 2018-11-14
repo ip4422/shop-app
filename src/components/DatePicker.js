@@ -1,14 +1,13 @@
-
 import React, { Component } from 'react';
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
-import '../../css/filters.css'
+import '../css/filters.css'
 import { SingleDatePicker } from 'react-dates'
 
 
-class DatePickerControl extends Component {
+class DatePicker extends Component {
   render() {
-    const { date, onDateChange, focused, onFocusChange, id } = this.props
+    const { date, onDateChange, focused, onFocusChange, name } = this.props
     return (
       <div className='col-4'>
         <div className='input-group mb-3'>
@@ -22,7 +21,7 @@ class DatePickerControl extends Component {
             onDateChange={onDateChange} // PropTypes.func.isRequired
             focused={focused} // PropTypes.bool
             onFocusChange={onFocusChange} // PropTypes.func.isRequired
-            id={id} // PropTypes.string.isRequired,
+            id={name} // PropTypes.string.isRequired,
           />
         </div>
       </div>
@@ -31,4 +30,4 @@ class DatePickerControl extends Component {
   }
 }
 
-export default DatePickerControl;
+export default DatePicker;

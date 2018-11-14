@@ -12,7 +12,6 @@ class NavBar extends Component {
             </button>
             <div className='collapse navbar-collapse' id='navbarToggler'>
               <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>
-                <NavBarItem to={'/'} caption={'Home'} />
                 <NavBarItem to={'/login'} caption={'Login'} />
                 <NavBarItem to={'/signup'} caption={'Signup'} />
                 <NavBarItem to={'/search'} caption={'Search'} />

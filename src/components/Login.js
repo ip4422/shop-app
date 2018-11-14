@@ -28,20 +28,20 @@ class Login extends Component {
 
   //TODO: сдалть с номрмальной библиотекой с кодир-раскодир или проверять пароли прямо захэшированными лучше.
   /*eslint-disable*/
-  hash(s) {
+  hash(pass) {
     /* Simple hash function. */
-    var a = 1, c = 0, h, o;
-    if (s) {
-      a = 0;
+    let a = 1, c = 0, h, o
+    if (pass) {
+      a = 0
       /*jshint plusplus:false bitwise:false*/
-      for (h = s.length - 1; h >= 0; h--) {
-        o = s.charCodeAt(h);
-        a = (a << 6 & 268435455) + o + (o << 14);
-        c = a & 266338304;
-        a = c !== 0 ? a ^ c >> 21 : a;
+      for (h = pass.length - 1; h >= 0; h--) {
+        o = pass.charCodeAt(h)
+        a = (a << 6 & 268435455) + o + (o << 14)
+        c = a & 266338304
+        a = c !== 0 ? a ^ c >> 21 : a
       }
     }
-    return String(a);
+    return String(a)
   }
   /*eslint-enable*/
 
@@ -55,7 +55,7 @@ class Login extends Component {
       }))
       return null
     }
-    if(!isValidEmail(email)){
+    if (!isValidEmail(email)) {
       this.setState(prev => ({
         ...prev,
         errorInput: 'email address incorrect',

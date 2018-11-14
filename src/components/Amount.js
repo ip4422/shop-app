@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 
-class AmountControl extends Component {
+class Amount extends Component {
   render() {
-    const { id, onChange, caption } = this.props
+    const { name, onChange, caption } = this.props
     return (
       <div className='col-4'>
         <div className='input-group mb-3'>
@@ -11,7 +11,7 @@ class AmountControl extends Component {
             <span className='input-group-text'>{caption} $</span>
           </div>
           <input
-            id={id}
+            id={name}
             type='text'
             className='form-control'
             aria-label='Amount (to the nearest dollar)'
@@ -24,4 +24,4 @@ class AmountControl extends Component {
   }
 }
 
-export default AmountControl;
+export default Amount;

@@ -1,16 +1,9 @@
 import { LOG_IN, LOG_OUT, LOG_IN_FAIL } from '../actions/sessionActions'
-import { user, errorMsg, colors, items, curt } from './initialStore.json'
-// "user": {
-//   "email": "ya@ya.ru",
-//   "password": "1234"
-// },
+import { user, errorMsg } from './initialStore.json'
 
 const initialState = {
   user,
   errorMsg,
-  colors,
-  items,
-  curt
 }
 
 export default (state = initialState, action) => {
@@ -41,12 +34,4 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-}
-
-// селектор
-
-//TODO: взять из state все карточки. взять фильтры из state(отправлять их диспатчем).  применить их к списку карточек. вернуть получившийся список из функции
-// экспортим
-export function selectCards(state) {
-// return 
 }

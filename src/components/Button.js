@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 
-class ButtonControl extends Component {
+class Button extends Component {
   render() {
     const { caption, onClick } = this.props
     return (
@@ -12,4 +12,4 @@ class ButtonControl extends Component {
   }
 }
 
-export default ButtonControl
+export default Button
