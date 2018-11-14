@@ -1,8 +1,9 @@
 import { LOG_IN, LOG_OUT, LOG_IN_FAIL } from '../actions/sessionActions'
-import { user, errorMsg } from './initialStore.json'
+import { admin, user, errorMsg } from './initialStore.json'
 
 const initialState = {
   user,
+  admin,
   errorMsg,
 }
 
@@ -29,7 +30,7 @@ export default (state = initialState, action) => {
     case LOG_IN_FAIL:
       return {
         ...state,
-        errorMsg: action.payload.errorMsg,
+        errorMsg: action.payload,
       }
     default:
       return state;

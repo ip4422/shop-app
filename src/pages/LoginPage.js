@@ -1,4 +1,3 @@
-// import React from 'react'
 import { connect } from 'react-redux'
 import { logIn } from '../actions/sessionActions'
 import Login from '../components/Login'
@@ -6,6 +5,7 @@ import Login from '../components/Login'
 const mapStateToProps = state => ({
   errorMsg: state.session.errorMsg,
   user: state.session.user,
+  admin: state.session.admin,
 })
 
 const mapDispatchToProps = dispatch => ({

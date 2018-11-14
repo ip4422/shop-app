@@ -1,7 +1,11 @@
 {
-  "user": {
+  "admin": {
     "email": "ya@ya.ru",
-    "password": "123"
+    "password": "92668751"
+  },
+  "user": {
+    "email": "",
+    "password": ""
   },
   "errorMsg": "",
   "colors": [

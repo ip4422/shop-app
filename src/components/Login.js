@@ -6,14 +6,15 @@ import { isValidEmail, hashCode } from '../helpers/service'
 class Login extends Component {
   constructor(props) {
     super(props)
-    const { signup, user } = this.props
+    const { signup, user, admin, errorMsg } = this.props
     this.state = {
       redirectBack: Boolean(user.email),
       email: '',
       pasword: '',
       confirmPassword: '',
-      errorInput: '',
+      errorMsg,
       isSignup: signup,
+      admin,
     }
   }
 
@@ -32,14 +33,14 @@ class Login extends Component {
     if (isSignup && password !== confirmPassword) {
       this.setState(prev => ({
         ...prev,
-        errorInput: 'password didn\'t match',
+        errorMsg: 'password didn\'t match',
       }))
       return null
     }
     if (!isValidEmail(email)) {
       this.setState(prev => ({
         ...prev,
-        errorInput: 'email address incorrect',
+        errorMsg: 'email address incorrect',
       }))
       return null
     }
@@ -47,6 +48,7 @@ class Login extends Component {
       {
         email,
         password: hashCode(password),
+        admin: this.state.admin,
       },
       () => {
         this.setState({ redirectBack: true })
@@ -65,14 +67,12 @@ class Login extends Component {
     )
   }
 
-  getAlert() {
-    if (this.state.errorInput) {
+  getAlert(errorMsg) {
       return (
         <div className='alert alert-danger' role='alert'>
-          {this.state.errorInput}
+          {errorMsg}
         </div>
       )
-    }
   }
 
   getConfirmPassword() {
@@ -91,6 +91,7 @@ class Login extends Component {
   }
 
   render() {
+    const { errorMsg } = this.props || this.state.errorMsg
     const { location } = this.props
     const { from } = location.state || { from: { pathname: '/search' } }
     const { redirectBack, isSignup } = this.state
@@ -101,7 +102,7 @@ class Login extends Component {
 
     return (
       <div className='container'>
-        {this.getAlert()}
+        {errorMsg && this.getAlert(errorMsg)}
         <form onSubmit={this.handleSubmit}>
           <div className='form-group'>
             <label htmlFor='InputEmail'>Email address</label>

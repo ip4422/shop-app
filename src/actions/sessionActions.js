@@ -1,5 +1,3 @@
-import { checkAccess } from '../helpers/session'
-
 export const LOG_IN = 'LOG_IN'
 export const LOG_OUT = 'LOG_OUT'
 export const LOG_IN_FAIL = 'LOG_IN_FAIL'
@@ -29,4 +27,8 @@ export function logOut() {
   return {
     type: LOG_OUT,
   }
+}
+
+export function checkAccess(params){
+  return params.admin.password === params.password
 }
