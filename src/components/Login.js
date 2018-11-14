@@ -103,7 +103,7 @@ class Login extends Component {
           data-field-name={'confirmPassword'}
           onChange={this.handleChange}
           className='form-control'
-          id='InputConfirmPassword'
+          name='InputConfirmPassword'
           placeholder='Confirm Password' />
       </div>
     )
@@ -129,7 +129,7 @@ class Login extends Component {
               data-field-name={'email'}
               onChange={this.handleChange}
               className='form-control'
-              id='InputEmail'
+              name='InputEmail'
               aria-describedby='emailHelp'
               placeholder='Enter email' />
           </div>
@@ -140,7 +140,7 @@ class Login extends Component {
               data-field-name={'password'}
               onChange={this.handleChange}
               className='form-control'
-              id='InputPassword'
+              name='InputPassword'
               placeholder='Password' />
           </div>
           {isSignup ? this.getConfirmPassword() : ''}

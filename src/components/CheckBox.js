@@ -12,7 +12,7 @@ class CheckBox extends Component {
             <div className='input-group-text'>
               {name ? <input
                 type='checkbox'
-                id={name}
+                name={name}
                 aria-label={`Checkbox for ${caption}`}
                 onChange={onChange}
                 checked={getBool(value)}

@@ -7,7 +7,7 @@ import { SingleDatePicker } from 'react-dates'
 
 class DatePicker extends Component {
   render() {
-    const { date, onDateChange, focused, onFocusChange, name } = this.props
+    const { date, onDateChange, focused, onFocusChange, id } = this.props
     return (
       <div className='col-4'>
         <div className='input-group mb-3'>
@@ -21,7 +21,7 @@ class DatePicker extends Component {
             onDateChange={onDateChange} // PropTypes.func.isRequired
             focused={focused} // PropTypes.bool
             onFocusChange={onFocusChange} // PropTypes.func.isRequired
-            id={name} // PropTypes.string.isRequired,
+            id={id} // PropTypes.string.isRequired,
           />
         </div>
       </div>

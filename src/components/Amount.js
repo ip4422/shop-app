@@ -11,7 +11,7 @@ class Amount extends Component {
             <span className='input-group-text'>{caption} $</span>
           </div>
           <input
-            id={name}
+            name={name}
             type='text'
             className='form-control'
             aria-label='Amount (to the nearest dollar)'

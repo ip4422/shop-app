@@ -4,7 +4,6 @@ import DatePicker from './DatePicker'
 import CheckBox from './CheckBox'
 import Amount from './Amount'
 import DropDown from './DropDown'
-// import debounce from 'lodash/debounce'
 
 const FROM_DATE_ID = 'from-date-id'
 const TO_DATE_ID = 'to-date-id'
@@ -20,6 +19,8 @@ class Filters extends Component {
     this.state = {
       focusedFromDate: null,
       focusedToDate: null,
+      fromDate:filter.fromDate,
+      toDate:filter.toDate,
       filter,
       colors,
       errorMsg,
@@ -62,24 +63,24 @@ class Filters extends Component {
           <div className='container'>
             <div className='row'>
               <DatePicker
-                date={this.state.filter.fromDate}
+                date={this.state.fromDate}
                 onDateChange={date => {
                   this.state.setFilter({ fromDate: date, })
                   this.setState({ fromDate: date, })
                 }}
                 focused={this.state.focusedFromDate}
                 onFocusChange={({ focused }) => this.setState({ focusedFromDate: focused })} // PropTypes.func.isRequired
-                name={FROM_DATE_ID}
+                id={FROM_DATE_ID}
               />
               <DatePicker
-                date={this.state.filter.toDate}
+                date={this.state.toDate}
                 onDateChange={date => {
                   this.state.setFilter({ ToDate: date, })
                   this.setState({ ToDate: date, })
                 }}
                 focused={this.state.focusedToDate}
                 onFocusChange={({ focused }) => this.setState({ focusedToDate: focused })} // PropTypes.func.isRequired
-                name={TO_DATE_ID}
+                id={TO_DATE_ID}
               />
               <CheckBox name={IN_STOCK_ONLY_ID} caption={'In Stock only'} onChange={this.onChangeHandler} checked={this.state.filter.inStockOnly} />
             </div>
