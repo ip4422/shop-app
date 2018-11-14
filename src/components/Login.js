@@ -8,30 +8,22 @@ import PasswordField from './PasswordField'
 class Login extends Component {
   constructor(props) {
     super(props)
-    const { signup, user, admin, errorMsg } = this.props
+    const { isSignup, admin, errorMsg, isAuthorized } = this.props
     this.state = {
-      redirectBack: Boolean(user.email),
       email: '',
       password: '',
       confirmPassword: '',
       errorMsg,
-      isSignup: signup,
+      isSignup,
       admin,
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.signup !== prevProps.signup) {
-      this.setState(prev => ({
-        ...prev,
-        isSignup: this.props.signup,
-      }));
+      redirectBack: isAuthorized,
     }
   }
 
   handleSubmit = event => {
     event.preventDefault()
-    const { email, password, confirmPassword, isSignup } = this.state
+    const { email, password, confirmPassword } = this.state
+    const { isSignup, logIn, signUp } = this.props
     if (isSignup && password !== confirmPassword) {
       this.setState(prev => ({
         ...prev,
@@ -46,14 +38,27 @@ class Login extends Component {
       }))
       return null
     }
-    // pass 'admin' cause we have no server part authorization
-    this.props.logIn(
-      {
-        email,
-        password: hashCode(password),
-        admin: this.state.admin,
-      },
-      () => { this.setState({ redirectBack: true }) } )
+    if (isSignup) {
+      signUp(
+        {
+          email,
+          password: hashCode(password),
+        },
+        () => {
+          this.setState({ redirectBack: true })
+        })
+    } else {
+      // pass 'admin' cause we have no server part authorization
+      logIn(
+        {
+          email,
+          password: hashCode(password),
+          admin: this.state.admin,
+        },
+        () => {
+          this.setState({ redirectBack: true })
+        })
+    }
   }
 
   handleChange = event => {
@@ -76,9 +81,9 @@ class Login extends Component {
 
   render() {
     const errorMsg = this.props.errorMsg || this.state.errorMsg
-    const { location } = this.props
+    const { location, isSignup } = this.props
     const { from } = location.state || { from: { pathname: '/search' } }
-    const { redirectBack, isSignup } = this.state
+    const { redirectBack } = this.state
 
     if (redirectBack) {
       return <Redirect to={from} />
@@ -88,9 +93,12 @@ class Login extends Component {
       <div className='container'>
         {errorMsg && this.getAlert(errorMsg)}
         <form onSubmit={this.handleSubmit}>
-          <EmailField onChange={this.handleChange}/>
-          <PasswordField onChange={this.handleChange} caption={'Password'} name={'password'}/>
-          {isSignup ? <PasswordField onChange={this.handleChange} caption={'Confirm Password'} name={'confirmPassword'}/> : ''}
+          <EmailField onChange={this.handleChange} />
+          <PasswordField onChange={this.handleChange} caption={'Password'} name={'password'} />
+          {isSignup
+            ?
+            <PasswordField onChange={this.handleChange} caption={'Confirm Password'} name={'confirmPassword'} />
+            : ''}
           <button type='submit' className='btn btn-primary'>Submit</button>
         </form>
       </div>

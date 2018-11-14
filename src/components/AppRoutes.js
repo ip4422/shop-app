@@ -15,7 +15,7 @@ class AppRoutes extends Component {
         <Route exact path='/' render={() => <Redirect to='/login' />} />
         <Route path='/login' component={LoginPage} />
         <Route path='/signup' render={props => (
-          <LoginPage {...props} signup={true} />
+          <LoginPage {...props} isSignup={true} />
         )} />
         <PrivateRoute path='/search' component={SearchPage} />
         <PrivateRoute path='/cart' component={Cart} />
