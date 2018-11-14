@@ -23,7 +23,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 const mapStateToProps = state => {
   return {
-    isAuthorized: state.session.user.email !== '',
+    isAuthorized: state.sessionStore.user.email !== '',
   }
 }
 

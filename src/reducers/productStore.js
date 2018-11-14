@@ -2,10 +2,6 @@ import moment from 'moment'
 import { getBool } from '../helpers/service'
 import { SET_ITEMS, SET_FILTER, SET_INSTOCK } from '../actions/itemsActions'
 import { colors, items, filter, cart } from './initialStore.json'
-// "user": {
-//   "email": "ya@ya.ru",
-//   "password": "1234"
-// },
 
 const initialState = {
   colors,

@@ -3,10 +3,10 @@ import { logIn, signUp } from '../actions/sessionActions'
 import Login from '../components/Login'
 
 const mapStateToProps = state => ({
-  isAuthorized: state.session.user.email !== '',
-  errorMsg: state.session.errorMsg,
-  user: state.session.user,
-  admin: state.session.admin,
+  isAuthorized: state.sessionStore.user.email !== '',
+  errorMsg: state.sessionStore.errorMsg,
+  user: state.sessionStore.user,
+  admin: state.sessionStore.admin,
 })
 
 const mapDispatchToProps = dispatch => ({

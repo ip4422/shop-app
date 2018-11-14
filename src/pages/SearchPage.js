@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { setItems, setFilter } from '../actions/itemsActions';
 import { selectItems } from '../reducers/productStore';
 import Filters from '../components/Filters'
-import Card from '../components/Card/Card'
+import {Card} from '../components/Card'
 
 class SearchPage extends React.Component {
   render() {
@@ -25,7 +25,7 @@ const mapStateToProps = state => ({
   colors: state.productStore.colors,
   filter: state.productStore.filter,
   items: selectItems(state),
-  errorMsg: state.session.errorMsg,
+  errorMsg: state.sessionStore.errorMsg,
 })
 
 const mapDispatchToProps = dispatch => ({

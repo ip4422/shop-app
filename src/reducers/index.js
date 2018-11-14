@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import session from './session'
+import sessionStore from './sessionStore'
 import productStore from './productStore'
 
 export default combineReducers({
-  session,
+  sessionStore,
   productStore,
 })

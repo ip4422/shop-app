@@ -11,7 +11,7 @@ class LogoutPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.session.user,
+  user: state.sessionStore.user,
 })
 
 const mapDispatchToProps = dispatch => ({
