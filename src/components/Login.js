@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import PropTypes from 'prop-types'
-import { isValidEmail } from '../helpers/service'
+import { isValidEmail, hashCode } from '../helpers/service'
 
 class Login extends Component {
   constructor(props) {
@@ -26,25 +26,6 @@ class Login extends Component {
     }
   }
 
-  //TODO: сдалть с номрмальной библиотекой с кодир-раскодир или проверять пароли прямо захэшированными лучше.
-  /*eslint-disable*/
-  hash(pass) {
-    /* Simple hash function. */
-    let a = 1, c = 0, h, o
-    if (pass) {
-      a = 0
-      /*jshint plusplus:false bitwise:false*/
-      for (h = pass.length - 1; h >= 0; h--) {
-        o = pass.charCodeAt(h)
-        a = (a << 6 & 268435455) + o + (o << 14)
-        c = a & 266338304
-        a = c !== 0 ? a ^ c >> 21 : a
-      }
-    }
-    return String(a)
-  }
-  /*eslint-enable*/
-
   handleSubmit = event => {
     event.preventDefault()
     const { email, password, confirmPassword, isSignup } = this.state
@@ -65,7 +46,7 @@ class Login extends Component {
     this.props.logIn(
       {
         email,
-        password: this.hash(password),
+        password: hashCode(password),
       },
       () => {
         this.setState({ redirectBack: true })
