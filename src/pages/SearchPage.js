@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setItems } from '../actions/itemsActions';
+import { setItems, setFilter } from '../actions/itemsActions';
+import { selectItems } from '../reducers/productStore';
 import Filters from '../components/Filters'
 import Card from '../components/Card/Card'
 
@@ -11,22 +12,24 @@ class SearchPage extends React.Component {
       <React.Fragment>
         {items && <Filters {...this.props} />}
         <div className='container'>
-          {items && items.map(item => <Card item={item} key={item.id} />)}
+          {items && items.map(item => (
+            !item.isFiltered ? <Card item={item} key={item.id} onChange={this.props.setItems}/> : ''
+          ))}
         </div>
       </React.Fragment>
     )
   }
 }
 
-//TODO: селектор использовать
-
 const mapStateToProps = state => ({
   errorMsg: state.session.errorMsg,
-  items: state.session.items,// вместо этого поставить selectCards(state) в state будут лежать и фильтры
-  colors: state.session.colors,
+  items: selectItems(state),
+  colors: state.productStore.colors,
+  filters: state.productStore.filters,
 })
 
 const mapDispatchToProps = dispatch => ({
+  setFilter: (items) => dispatch(setFilter(items)),
   setItems: (items) => dispatch(setItems(items))
 })
 

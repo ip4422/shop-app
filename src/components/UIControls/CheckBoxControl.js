@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { getBool } from '../../helpers/service'
 
 class CheckBoxControl extends Component {
   render() {
-    const { caption, value, onChangeHandler, id } = this.props
+    const { caption, value, onChange, id } = this.props
     return (
       <div className='col-3'>
         <div className='input-group mb-3'>
@@ -13,14 +14,14 @@ class CheckBoxControl extends Component {
                 type='checkbox'
                 id={id}
                 aria-label={`Checkbox for ${caption}`}
-                onChange={onChangeHandler}
+                onChange={onChange}
                 checked={getBool(value)}
               />
                 :
                 <input
                   type='checkbox'
                   aria-label={`Checkbox for ${caption}`}
-                  onChange={onChangeHandler}
+                  onChange={onChange}
                   checked={getBool(value)}
                 />}
             </div>
@@ -30,6 +31,10 @@ class CheckBoxControl extends Component {
       </div>
     )
   }
+}
+
+CheckBoxControl.propTypes={
+  onChange: PropTypes.func.isRequired,
 }
 
 export default CheckBoxControl

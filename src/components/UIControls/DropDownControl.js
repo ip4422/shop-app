@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 
 class DropDownControl extends Component {
 
-  getListItems(items, id) {
+  getListItems(items, id, onChange) {
     return (
-      <select id={id} onChange={this.onChangeHandler}>
+      <select id={id} onChange={onChange}>
         {items.map(value => (
           <option value={value.toLowerCase()} key={value}>{value}</option>
         ))}

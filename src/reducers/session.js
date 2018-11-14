@@ -1,5 +1,4 @@
 import { LOG_IN, LOG_OUT, LOG_IN_FAIL } from '../actions/sessionActions'
-import { SET_ITEMS } from '../actions/itemsActions'
 import { user, errorMsg, colors, items, curt } from './initialStore.json'
 // "user": {
 //   "email": "ya@ya.ru",
@@ -39,18 +38,6 @@ export default (state = initialState, action) => {
         ...state,
         errorMsg: action.payload.errorMsg,
       }
-    case SET_ITEMS:
-      return {
-        ...state,
-        // items: action.payload.items,
-        items: state.items.map((item, index) => {
-          return {
-            ...item,
-            isFiltered: action.payload[index].isFiltered,
-          }
-        })
-      }
-
     default:
       return state;
   }
