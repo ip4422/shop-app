@@ -7,12 +7,12 @@ import LogoutPage from '../pages/LogoutPage'
 import NotFound from './NotFound'
 import Cart from './Cart'
 
-export const ROOT_PATH='/shop-app/'
-export const LOGIN_PATH='/shop-app/login'
-export const SIGNUP_PATH='/shop-app/signup'
-export const SEARCH_PATH='/shop-app/search'
-export const CART_PATH='/shop-app/cart'
-export const LOGOUT_PATH='/shop-app/logout'
+export const ROOT_PATH='/'
+export const LOGIN_PATH='/login'
+export const SIGNUP_PATH='/signup'
+export const SEARCH_PATH='/search'
+export const CART_PATH='/cart'
+export const LOGOUT_PATH='/logout'
 
 
 class AppRoutes extends Component {
