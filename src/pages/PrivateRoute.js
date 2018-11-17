@@ -1,9 +1,10 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { LOGIN_PATH, SEARCH_PATH } from '../components/AppRoutes'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  return(
+  return (
     <Route
       {...rest}
       render={props =>
@@ -12,8 +13,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           :
           (<Redirect
             to={{
-              pathname: '/login',
-              state: { from: '/search' },
+              pathname: LOGIN_PATH,
+              state: { from: SEARCH_PATH },
             }}
           />
           )}

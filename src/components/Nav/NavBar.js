@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import NavBarItem from './NavBarItem'
+import { LOGIN_PATH, LOGOUT_PATH, SEARCH_PATH, SIGNUP_PATH, CART_PATH } from '../AppRoutes'
 
 class NavBar extends Component {
   render() {
@@ -12,11 +13,11 @@ class NavBar extends Component {
             </button>
             <div className='collapse navbar-collapse' id='navbarToggler'>
               <ul className='navbar-nav mr-auto mt-2 mt-lg-0'>
-                <NavBarItem to={'/login'} caption={'Login'} />
-                <NavBarItem to={'/signup'} caption={'Signup'} />
-                <NavBarItem to={'/search'} caption={'Search'} />
-                <NavBarItem to={'/logout'} caption={'Logout'} />
-                <NavBarItem to={'/cart'} caption={'Cart'} />
+                <NavBarItem to={LOGIN_PATH} caption={'Login'} />
+                <NavBarItem to={SIGNUP_PATH} caption={'Signup'} />
+                <NavBarItem to={SEARCH_PATH} caption={'Search'} />
+                <NavBarItem to={LOGOUT_PATH} caption={'Logout'} />
+                <NavBarItem to={CART_PATH} caption={'Cart'} />
               </ul>
             </div>
           </nav>

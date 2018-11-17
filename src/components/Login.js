@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { isValidEmail, hashCode } from '../helpers/service'
 import EmailField from './EmailField'
 import PasswordField from './PasswordField'
+import { SEARCH_PATH } from './AppRoutes'
 
 class Login extends Component {
   constructor(props) {
@@ -82,7 +83,7 @@ class Login extends Component {
   render() {
     const errorMsg = this.props.errorMsg || this.state.errorMsg
     const { location, isSignup } = this.props
-    const { from } = location.state || { from: { pathname: '/search' } }
+    const { from } = location.state || { from: { pathname: SEARCH_PATH } }
     const { redirectBack } = this.state
 
     if (redirectBack) {
