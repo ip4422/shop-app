@@ -11,6 +11,7 @@ If email and password are corrected, auth info should be stored in the local sto
 
 ### Log in page
 Has Email and password fields. After pressing "Log in" button, auth info checked and user authorized.
+By default email:ya@ya.ru, password: admin
 
 ### Search page
 Allowed for authorized users only. Search page should has item's filter and item's list. When any filter is changed, item's list reloaded according enabled filters. Page shouldn't be reloaded, just item's list. User can add item in the his cart.
