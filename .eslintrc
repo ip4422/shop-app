@@ -1,15 +1,15 @@
 {
-  "extends": [
-    "react-app",
-    "prettier"
-  ],
+  "extends": ["react-app", "prettier"],
   "rules": {
-    "jsx-quotes": [
-      1,
-      "prefer-single"
-    ]
+    "no-unused-expressions": [
+      "warn",
+      {
+        "allowTernary": true,
+        "allowShortCircuit": true
+      }
+    ],
+    "jsx-quotes": [1, "prefer-single"]
   },
-  "plugins": [
-    "prettier"
-  ]
+  "plugins": ["prettier"],
+  "parser": "babel-eslint"
 }

@@ -1,5 +1,14 @@
 {
+  "editor.tabCompletion": "on",
+  "editor.tabSize": 2,
+  "beautify.tabSize": 2,
+  "editor.formatOnSave": true,
+  "typescript.validate.enable": false,
+  "javascript.validate.enable": false,
   "search.exclude": {
     "**/docs": true
-  }
+  },
+  "editor.fontFamily": "Hack, \"Operator Mono\", \"Fira Code\", \"Input Mono\"",
+  "editor.fontLigatures": true,
+  "editor.fontWeight": "300"
 }

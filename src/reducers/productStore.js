@@ -18,10 +18,12 @@ export default (state = initialState, action) => {
         items: state.items.map((item) => {
           return {
             ...item,
-            inStock: item.id === action.payload.id
-              ? action.payload.inStock : item.inStock,
+            inStock:
+              item.id === action.payload.id
+                ? action.payload.inStock
+                : item.inStock,
           }
-        })
+        }),
       }
 
     case SET_INSTOCK:
@@ -32,7 +34,7 @@ export default (state = initialState, action) => {
             ...item,
             inStock: action.payload[index].inStock,
           }
-        })
+        }),
       }
 
     case SET_FILTER:
@@ -40,16 +42,16 @@ export default (state = initialState, action) => {
         ...state,
         filter: {
           ...state.filter,
-          ...action.payload
-        }
+          ...action.payload,
+        },
       }
 
     default:
-      return state;
+      return state
   }
 }
 
-// селектор
+// selector
 
 function applyFilter(item, filter) {
   let filtered_item = item
@@ -72,10 +74,10 @@ function applyFilter(item, filter) {
   }
 
   // check price range
-  if (filter.priceFrom && (item.price < filter.priceFrom)) {
+  if (filter.priceFrom && item.price < filter.priceFrom) {
     filtered_item.isFiltered = true
     // return filtered_item
-  } else if (filter.priceTo && (item.price > filter.priceTo)) {
+  } else if (filter.priceTo && item.price > filter.priceTo) {
     filtered_item.isFiltered = true
     // return filtered_item
   }
@@ -92,7 +94,6 @@ function getItems(items, filter) {
   return items.map((item, index) => applyFilter(item, filter))
 }
 
-export function selectItems(state) {
-  return getItems(state.productStore.items, state.productStore.filter)
+export function selectItems(productStore) {
+  return getItems(productStore.items, productStore.filter)
 }
-

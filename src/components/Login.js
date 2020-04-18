@@ -6,6 +6,7 @@ import EmailField from './EmailField'
 import PasswordField from './PasswordField'
 import { SEARCH_PATH } from './AppRoutes'
 
+// TODO: need refactoring
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -28,7 +29,7 @@ class Login extends Component {
     if (isSignup && password !== confirmPassword) {
       this.setState(prev => ({
         ...prev,
-        errorMsg: 'password didn\'t match',
+        errorMsg: "password didn't match",
       }))
       return null
     }
@@ -47,7 +48,8 @@ class Login extends Component {
         },
         () => {
           this.setState({ redirectBack: true })
-        })
+        }
+      )
     } else {
       // pass 'admin' cause we have no server part authorization
       logIn(
@@ -58,7 +60,8 @@ class Login extends Component {
         },
         () => {
           this.setState({ redirectBack: true })
-        })
+        }
+      )
     }
   }
 
@@ -68,8 +71,7 @@ class Login extends Component {
     this.setState(prev => ({
       ...prev,
       [name]: value,
-    })
-    )
+    }))
   }
 
   getAlert(errorMsg) {
@@ -95,12 +97,23 @@ class Login extends Component {
         {errorMsg && this.getAlert(errorMsg)}
         <form onSubmit={this.handleSubmit}>
           <EmailField onChange={this.handleChange} />
-          <PasswordField onChange={this.handleChange} caption={'Password'} name={'password'} />
-          {isSignup
-            ?
-            <PasswordField onChange={this.handleChange} caption={'Confirm Password'} name={'confirmPassword'} />
-            : ''}
-          <button type='submit' className='btn btn-primary'>Submit</button>
+          <PasswordField
+            onChange={this.handleChange}
+            caption={'Password'}
+            name={'password'}
+          />
+          {isSignup ? (
+            <PasswordField
+              onChange={this.handleChange}
+              caption={'Confirm Password'}
+              name={'confirmPassword'}
+            />
+          ) : (
+            ''
+          )}
+          <button type='submit' className='btn btn-primary'>
+            Submit
+          </button>
         </form>
       </div>
     )

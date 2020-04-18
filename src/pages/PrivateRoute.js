@@ -7,24 +7,25 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props =>
-        rest.isAuthorized ?
-          (<Component {...props} />)
-          :
-          (<Redirect
+      render={(props) =>
+        rest.isAuthorized ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
             to={{
               pathname: LOGIN_PATH,
               state: { from: SEARCH_PATH },
             }}
           />
-          )}
+        )
+      }
     />
   )
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ sessionStore }) => {
   return {
-    isAuthorized: state.sessionStore.user.email !== '',
+    isAuthorized: sessionStore.user.email !== '',
   }
 }
 
