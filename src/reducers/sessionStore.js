@@ -1,4 +1,9 @@
-import { LOG_IN, LOG_OUT, LOG_IN_FAIL, SIGN_UP } from '../actions/sessionActions'
+import {
+  LOG_IN,
+  LOG_OUT,
+  LOG_IN_FAIL,
+  SIGN_UP,
+} from '../actions/sessionActions'
 import { admin, user, errorMsg } from './initialStore.json'
 
 const initialState = {
@@ -18,7 +23,7 @@ export default (state = initialState, action) => {
         },
         errorMsg: '',
       }
-      case SIGN_UP:
+    case SIGN_UP:
       return {
         ...state,
         user: {
@@ -42,6 +47,6 @@ export default (state = initialState, action) => {
         errorMsg: action.payload,
       }
     default:
-      return state;
+      return state
   }
 }

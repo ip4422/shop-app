@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class Amount extends Component {
   render() {
@@ -19,9 +19,14 @@ class Amount extends Component {
           />
         </div>
       </div>
-
-    );
+    )
   }
 }
 
-export default Amount;
+Amount.propTypes = {
+  caption: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+}
+
+export default Amount

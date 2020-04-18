@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class EmailField extends Component {
   render() {
-    const {onChange} = this.props
+    const { onChange } = this.props
     return (
       <div className='form-group'>
         <label htmlFor='email'>Email address</label>
@@ -14,10 +14,15 @@ class EmailField extends Component {
           className='form-control'
           name='email'
           aria-describedby='emailHelp'
-          placeholder='Enter email' />
+          placeholder='Enter email'
+        />
       </div>
-    );
+    )
   }
 }
 
-export default EmailField;
+EmailField.propTypes = {
+  onChange: PropTypes.func,
+}
+
+export default EmailField

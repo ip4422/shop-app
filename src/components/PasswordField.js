@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class PasswordField extends Component {
   render() {
@@ -13,13 +13,17 @@ class PasswordField extends Component {
           onChange={onChange}
           className='form-control'
           name={name}
-          // name='InputPassword'
-          placeholder='Password' />
+          placeholder='Password'
+        />
       </div>
-    );
+    )
   }
 }
 
-export default PasswordField;
+PasswordField.propTypes = {
+  caption: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+}
 
-
+export default PasswordField

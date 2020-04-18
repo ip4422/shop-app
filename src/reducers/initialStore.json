@@ -1,6 +1,6 @@
 {
   "admin": {
-    "email": "ya@ya.ru",
+    "email": "admin@myself.com",
     "password": "92668751"
   },
   "user": {
@@ -8,15 +8,7 @@
     "password": ""
   },
   "errorMsg": "",
-  "colors": [
-    "",
-    "Red",
-    "White",
-    "Black",
-    "Blue",
-    "Yellow",
-    "Green"
-  ],
+  "colors": ["", "Red", "White", "Black", "Blue", "Yellow", "Green"],
   "items": [
     {
       "id": "1",

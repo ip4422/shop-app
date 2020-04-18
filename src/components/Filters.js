@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import DatePicker from './DatePicker'
 import CheckBox from './CheckBox'
 import Amount from './Amount'
-import DropDown from './DropDown'
+import { DropDown } from './DropDown'
 
 const FROM_DATE_ID = 'from-date-id'
 const TO_DATE_ID = 'to-date-id'
@@ -12,6 +12,8 @@ const FROM_AMOUNT_ID = 'from-amount-id'
 const TO_AMOUNT_ID = 'to-amount-id'
 const COLOR_ID = 'color-id'
 
+// TODO: for refactoring
+
 class Filters extends Component {
   constructor(props) {
     super(props)
@@ -19,8 +21,8 @@ class Filters extends Component {
     this.state = {
       focusedFromDate: null,
       focusedToDate: null,
-      fromDate:filter.fromDate,
-      toDate:filter.toDate,
+      fromDate: filter.fromDate,
+      toDate: filter.toDate,
       filter,
       colors,
       errorMsg,
@@ -28,7 +30,7 @@ class Filters extends Component {
     }
   }
 
-  onChangeHandler = (event) => {
+  onChangeHandler = event => {
     const fieldName = event.currentTarget.name
     switch (fieldName) {
       case IN_STOCK_ONLY_ID:
@@ -65,29 +67,55 @@ class Filters extends Component {
               <DatePicker
                 date={this.state.fromDate}
                 onDateChange={date => {
-                  this.state.setFilter({ fromDate: date, })
-                  this.setState({ fromDate: date, })
+                  this.state.setFilter({ fromDate: date })
+                  this.setState({ fromDate: date })
                 }}
                 focused={this.state.focusedFromDate}
-                onFocusChange={({ focused }) => this.setState({ focusedFromDate: focused })} // PropTypes.func.isRequired
+                onFocusChange={({ focused }) =>
+                  this.setState({ focusedFromDate: focused })
+                } // PropTypes.func.isRequired
                 id={FROM_DATE_ID}
               />
               <DatePicker
                 date={this.state.toDate}
                 onDateChange={date => {
-                  this.state.setFilter({ ToDate: date, })
-                  this.setState({ ToDate: date, })
+                  this.state.setFilter({ ToDate: date })
+                  this.setState({ ToDate: date })
                 }}
                 focused={this.state.focusedToDate}
-                onFocusChange={({ focused }) => this.setState({ focusedToDate: focused })} // PropTypes.func.isRequired
+                onFocusChange={({ focused }) =>
+                  this.setState({ focusedToDate: focused })
+                } // PropTypes.func.isRequired
                 id={TO_DATE_ID}
               />
-              <CheckBox name={IN_STOCK_ONLY_ID} caption={'In Stock only'} onChange={this.onChangeHandler} checked={this.state.filter.inStockOnly} />
+              <CheckBox
+                name={IN_STOCK_ONLY_ID}
+                caption={'In Stock only'}
+                onChange={this.onChangeHandler}
+                checked={this.state.filter.inStockOnly}
+              />
             </div>
-            <div className='row'> <div className='col'> Price </div> </div> <div className='row'>
-              <Amount name={FROM_AMOUNT_ID} caption={'From'} onChange={this.onChangeHandler} /> 
-              <Amount name={TO_AMOUNT_ID} caption={'To'} onChange={this.onChangeHandler} />
-              <DropDown name={COLOR_ID} caption={'Color'} onChange={this.onChangeHandler} items={this.state.colors} />
+            <div className='row'>
+              {' '}
+              <div className='col'> Price </div>{' '}
+            </div>{' '}
+            <div className='row'>
+              <Amount
+                name={FROM_AMOUNT_ID}
+                caption={'From'}
+                onChange={this.onChangeHandler}
+              />
+              <Amount
+                name={TO_AMOUNT_ID}
+                caption={'To'}
+                onChange={this.onChangeHandler}
+              />
+              <DropDown
+                name={COLOR_ID}
+                caption={'Color'}
+                onChange={this.onChangeHandler}
+                items={this.state.colors}
+              />
             </div>
           </div>
         </div>

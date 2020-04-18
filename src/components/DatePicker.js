@@ -1,33 +1,53 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
 import '../css/filters.css'
 import { SingleDatePicker } from 'react-dates'
 
-
 class DatePicker extends Component {
   render() {
-    const { date, onDateChange, focused, onFocusChange, id } = this.props
+    const {
+      date,
+      onDateChange,
+      focused,
+      onFocusChange,
+      id,
+      onOutsideRange,
+    } = this.props
     return (
       <div className='col-4'>
         <div className='input-group mb-3'>
           <div className='input-group-prepend'>
-            <span className='input-group-text' id='from-date-label'>From:</span>
+            <span className='input-group-text' id='from-date-label'>
+              From:
+            </span>
           </div>
           <SingleDatePicker
-            date={date} // momentPropTypes.momentObj or null
+            date={date}
             numberOfMonths={1}
-            isOutsideRange={() => false}
-            onDateChange={onDateChange} // PropTypes.func.isRequired
-            focused={focused} // PropTypes.bool
-            onFocusChange={onFocusChange} // PropTypes.func.isRequired
-            id={id} // PropTypes.string.isRequired,
+            isOutsideRange={onOutsideRange}
+            onDateChange={onDateChange}
+            focused={focused}
+            onFocusChange={onFocusChange}
+            id={id}
           />
         </div>
       </div>
-
-    );
+    )
   }
 }
 
-export default DatePicker;
+DatePicker.propTypes = {
+  onDateChange: PropTypes.func.isRequired,
+  onFocusChange: PropTypes.func.isRequired,
+  focused: PropTypes.bool,
+  date: PropTypes.object,
+  id: PropTypes.string.isRequired,
+}
+
+DatePicker.defaultProps = {
+  onOutsideRange: () => false,
+}
+
+export default DatePicker

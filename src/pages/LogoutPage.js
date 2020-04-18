@@ -6,16 +6,16 @@ import Logout from '../components/Logout'
 class LogoutPage extends React.Component {
   render() {
     const { logOut, user } = this.props
-    return <Logout logOut={logOut} user={user}/>
+    return <Logout logOut={logOut} user={user} />
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.sessionStore.user,
+const mapStateToProps = ({ sessionStore }) => ({
+  user: sessionStore.user,
 })
 
-const mapDispatchToProps = dispatch => ({
-  logOut: () => dispatch(logOut())
-})
+const mapDispatchToProps = {
+  logOut: () => logOut(),
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogoutPage)

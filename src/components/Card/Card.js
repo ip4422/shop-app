@@ -19,18 +19,18 @@ class Card extends Component {
               <div className='container'>
                 <div className='row pt-3'>
                   <CardContentItem caption={'Name'} value={item.name} />
-                  <CardContentItem caption={'Issue Date'} value={item.issueDate} />
+                  <CardContentItem
+                    caption={'Issue Date'}
+                    value={item.issueDate}
+                  />
                   <CardContentItem caption={'Price'} value={item.price} />
                 </div>
                 <div className='row pt-3'>
                   <CardContentItem caption={'Color'} value={item.color} />
-                  <CheckBox caption={'In Stock Only'} value={item.inStock}
-                    onChange={(event) => {
-                      onChange({
-                        id:item.id,
-                        inStock: event.currentTarget.checked
-                      })
-                    }}
+                  <CheckBox
+                    caption={'In Stock Only'}
+                    value={item.inStock}
+                    onChange={onChange}
                   />
                   <Button caption={'Order'} onClick={null} />
                 </div>
@@ -45,6 +45,7 @@ class Card extends Component {
 
 Card.propTypes = {
   item: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
 }
 
 export default Card

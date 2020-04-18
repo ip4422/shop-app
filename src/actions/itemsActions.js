@@ -17,8 +17,8 @@ export function setInStock(items) {
 }
 
 export function setFilter(filter) {
-  return{
-    type:SET_FILTER,
+  return {
+    type: SET_FILTER,
     payload: filter,
   }
 }

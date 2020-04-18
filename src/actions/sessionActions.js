@@ -4,14 +4,14 @@ export const LOG_IN_FAIL = 'LOG_IN_FAIL'
 export const SIGN_UP = 'SIGN_UP'
 
 export function logIn(params, callBack) {
-  return dispatch => {
+  return (dispatch) => {
     if (checkAccess(params)) {
       dispatch({
         type: LOG_IN,
         payload: {
           email: params.email,
           password: params.password,
-        }
+        },
       })
       callBack()
     } else {
@@ -19,7 +19,6 @@ export function logIn(params, callBack) {
         type: LOG_IN_FAIL,
         payload: 'Wrong Username or Password',
       })
-
     }
   }
 }
@@ -31,13 +30,13 @@ export function logOut() {
 }
 
 export function signUp(params, callBack) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: SIGN_UP,
       payload: {
         email: params.email,
         password: params.password,
-      }
+      },
     })
     callBack()
   }
