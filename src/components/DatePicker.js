@@ -8,6 +8,7 @@ import { SingleDatePicker } from 'react-dates'
 export class DatePicker extends Component {
   render() {
     const {
+      caption,
       date,
       onDateChange,
       focused,
@@ -20,7 +21,7 @@ export class DatePicker extends Component {
         <div className='input-group mb-3'>
           <div className='input-group-prepend'>
             <span className='input-group-text' id='from-date-label'>
-              From:
+              {caption}
             </span>
           </div>
           <SingleDatePicker
@@ -44,8 +45,10 @@ DatePicker.propTypes = {
   focused: PropTypes.bool,
   date: PropTypes.object,
   id: PropTypes.string.isRequired,
+  caption: PropTypes.string,
 }
 
 DatePicker.defaultProps = {
   onOutsideRange: () => false,
+  caption: 'Date:',
 }

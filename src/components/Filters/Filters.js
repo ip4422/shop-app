@@ -13,8 +13,8 @@ export class Filters extends React.Component {
   }
 
   // need for DatePicker
-  handleFocusChange = ({ focused }) => {
-    this.setState({ focusedFromDate: focused })
+  handleFocusChange = fieldName => ({ focused }) => {
+    this.setState({ [fieldName]: focused })
   }
 
   render() {
@@ -25,17 +25,19 @@ export class Filters extends React.Component {
           <div className='container'>
             <div className='row'>
               <DatePicker
+                caption={'From:'}
                 date={filter.fromDate}
                 onDateChange={onChange('fromDate')}
                 focused={this.state.focusedFromDate}
-                onFocusChange={this.handleFocusChange}
+                onFocusChange={this.handleFocusChange('focusedFromDate')}
                 id={'from-date-id'}
               />
               <DatePicker
+                caption={'To:'}
                 date={filter.toDate}
                 onDateChange={onChange('toDate')}
                 focused={this.state.focusedToDate}
-                onFocusChange={this.handleFocusChange}
+                onFocusChange={this.handleFocusChange('focusedToDate')}
                 id={'to-date-id'}
               />
               <CheckBox
