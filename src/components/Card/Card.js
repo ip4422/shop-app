@@ -6,7 +6,6 @@ import { Button, CheckBox } from '../'
 
 const PROPS_COL_CLASSES = 'col-xs-6 col-sm-7 col-md-9 col-lg-9'
 
-// TODO: mske container with setInStock
 export class Card extends Component {
   render() {
     const { item, onChange } = this.props

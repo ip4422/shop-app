@@ -1,17 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { setInStock } from '../actions/itemsActions'
+
 import { selectItems } from '../reducers/productStore'
-import { Card, FiltersContainer } from '../components'
+import { CardContainer, FiltersContainer } from '../components'
 
+// TODO: split layout
 class SearchPage extends React.Component {
-  handleChange = id => event => {
-    this.props.setInStock({
-      id: id,
-      inStock: event.currentTarget.checked,
-    })
-  }
-
   render() {
     const { items } = this.props
     return (
@@ -21,11 +16,7 @@ class SearchPage extends React.Component {
           {items &&
             items.map(item =>
               !item.isFiltered ? (
-                <Card
-                  item={item}
-                  key={item.id}
-                  onChange={this.handleChange(item.id)}
-                />
+                <CardContainer item={item} key={item.id} />
               ) : (
                 ''
               )
@@ -36,14 +27,12 @@ class SearchPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ productStore, sessionStore }) => ({
-  colors: productStore.colors,
-  items: selectItems(productStore),
-  errorMsg: sessionStore.errorMsg,
-})
-
-const mapDispatchToProps = {
-  setInStock: items => setInStock(items),
+SearchPage.propTypes = {
+  items: PropTypes.array.isRequired,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchPage)
+const mapStateToProps = ({ productStore, sessionStore }) => ({
+  items: selectItems(productStore),
+})
+
+export default connect(mapStateToProps)(SearchPage)
