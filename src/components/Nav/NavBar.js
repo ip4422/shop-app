@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import NavBarItem from './NavBarItem'
+
+import { NavBarItem } from './'
 import {
   LOGIN_PATH,
   LOGOUT_PATH,
@@ -8,7 +9,7 @@ import {
   CART_PATH,
 } from '../AppRoutes'
 
-class NavBar extends Component {
+export class NavBar extends Component {
   render() {
     return (
       <header>
@@ -40,5 +41,3 @@ class NavBar extends Component {
     )
   }
 }
-
-export default NavBar

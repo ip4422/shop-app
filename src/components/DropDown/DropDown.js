@@ -1,13 +1,22 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import DropDownLayout from './DropDownLayout'
+import { DropDownLayout } from './'
 
-class DropDown extends Component {
+export class DropDown extends Component {
+  constructor(props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(event) {
+    this.props.onChange(event.target.value)
+  }
+
   getListItems() {
-    const { items, name, onChange } = this.props
+    const { items, name } = this.props
     return (
-      <select name={name} onChange={onChange}>
+      <select name={name} onChange={this.handleChange}>
         {items &&
           items.map(value => (
             <option value={value.toLowerCase()} key={value}>
@@ -30,5 +39,3 @@ DropDown.propTypes = {
   caption: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 }
-
-export default DropDown

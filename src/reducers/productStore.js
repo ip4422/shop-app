@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { getBool } from '../helpers/service'
-import { SET_ITEMS, SET_FILTER, SET_INSTOCK } from '../actions/itemsActions'
+import { SET_ITEM, SET_FILTER, SET_INSTOCK } from '../actions/itemsActions'
 import { colors, items, filter, cart } from './initialStore.json'
 
 const initialState = {
@@ -12,29 +12,28 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_ITEMS:
+    case SET_ITEM:
       return {
         ...state,
-        items: state.items.map((item) => {
-          return {
-            ...item,
-            inStock:
-              item.id === action.payload.id
-                ? action.payload.inStock
-                : item.inStock,
-          }
-        }),
+        items: state.items.map(item =>
+          item.id === action.payload.id
+            ? {
+                ...action.payload,
+              }
+            : { ...item }
+        ),
       }
 
     case SET_INSTOCK:
       return {
         ...state,
-        items: state.items.map((item, index) => {
-          return {
-            ...item,
-            inStock: action.payload[index].inStock,
-          }
-        }),
+        items: state.items.map(item => ({
+          ...item,
+          inStock:
+            item.id === action.payload.id
+              ? action.payload.inStock
+              : item.inStock,
+        })),
       }
 
     case SET_FILTER:
@@ -90,10 +89,10 @@ function applyFilter(item, filter) {
   return filtered_item
 }
 
-function getItems(items, filter) {
+function getFilteredItems(items, filter) {
   return items.map((item, index) => applyFilter(item, filter))
 }
 
 export function selectItems(productStore) {
-  return getItems(productStore.items, productStore.filter)
+  return getFilteredItems(productStore.items, productStore.filter)
 }

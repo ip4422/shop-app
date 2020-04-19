@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import CardAvatar from './CardAvatar'
-import CardContentItem from './CardContentItem'
-import CheckBox from '../CheckBox'
-import Button from '../Button'
+
+import { CardAvatar, CardContentItem } from './'
+import { Button, CheckBox } from '../'
 
 const PROPS_COL_CLASSES = 'col-xs-6 col-sm-7 col-md-9 col-lg-9'
 
-class Card extends Component {
+// TODO: mske container with setInStock
+export class Card extends Component {
   render() {
     const { item, onChange } = this.props
     return (
@@ -47,5 +47,3 @@ Card.propTypes = {
   item: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
 }
-
-export default Card

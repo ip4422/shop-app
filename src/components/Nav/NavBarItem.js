@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-class NavBarItem extends Component {
+export class NavBarItem extends Component {
   render() {
     const { to, caption } = this.props
     return (
@@ -19,5 +19,3 @@ NavBarItem.propTypes = {
   to: PropTypes.string,
   caption: PropTypes.string,
 }
-
-export default NavBarItem

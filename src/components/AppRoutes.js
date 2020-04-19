@@ -8,8 +8,7 @@ import {
   LogOutPage,
 } from '../pages'
 
-import NotFound from './NotFound'
-import Cart from './Cart'
+import { NotFound, Cart } from './'
 
 export const ROOT_PATH = '/shop-app/'
 export const LOGIN_PATH = '/shop-app/login'
@@ -18,7 +17,7 @@ export const SEARCH_PATH = '/shop-app/search'
 export const CART_PATH = '/shop-app/cart'
 export const LOGOUT_PATH = '/shop-app/logout'
 
-class AppRoutes extends Component {
+export class AppRoutes extends Component {
   render() {
     return (
       <Switch>
@@ -37,5 +36,3 @@ class AppRoutes extends Component {
     )
   }
 }
-
-export default AppRoutes
