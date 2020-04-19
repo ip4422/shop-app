@@ -1,12 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
 
 import { logIn } from '../../actions/sessionActions'
 import Login from './Login'
 import { isValidEmail, hashCode } from '../../helpers/service'
-import { SEARCH_PATH } from '../../components/AppRoutes'
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -33,22 +31,12 @@ class LoginPage extends React.Component {
   }
 
   render() {
-    const { from } = this.props.location.state || {
-      from: { pathname: SEARCH_PATH },
-    }
-
-    if (this.props.isAuthorized) {
-      return <Redirect to={from} />
-    }
-
     return (
-      <div>
-        <Login
-          {...this.props}
-          errorMsg={this.props.errorMsg || this.state.errorMsg}
-          onSubmit={this.handleSubmit}
-        />
-      </div>
+      <Login
+        {...this.props}
+        errorMsg={this.props.errorMsg || this.state.errorMsg}
+        onSubmit={this.handleSubmit}
+      />
     )
   }
 }

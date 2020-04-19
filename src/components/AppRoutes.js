@@ -5,7 +5,7 @@ import {
   SignUpPage,
   SearchPage,
   PrivateRoute,
-  LogoutPage,
+  LogOutPage,
 } from '../pages'
 
 import NotFound from './NotFound'
@@ -31,7 +31,7 @@ class AppRoutes extends Component {
         <Route path={SIGNUP_PATH} component={SignUpPage} />} />
         <PrivateRoute path={SEARCH_PATH} component={SearchPage} />
         <PrivateRoute path={CART_PATH} component={Cart} />
-        <Route path={LOGOUT_PATH} component={LogoutPage} />
+        <Route path={LOGOUT_PATH} component={LogOutPage} />
         <Route component={NotFound} />
       </Switch>
     )

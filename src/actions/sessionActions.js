@@ -40,5 +40,8 @@ export function signUp(params) {
 }
 
 export function checkAccess(params) {
-  return params.admin.password === params.password
+  return (
+    params.admin.password === params.password &&
+    params.admin.email === params.email
+  )
 }
