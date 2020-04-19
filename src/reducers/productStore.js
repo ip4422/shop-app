@@ -57,34 +57,33 @@ function applyFilter(item, filter) {
   filtered_item.isFiltered = false
 
   // compare date interval
-  const itemDate = moment(item.issueDate, 'MM-DD-YYYY')
-  if (filter.fromDate && itemDate.diff(filter.fromDate) < 0) {
+  if (
+    moment(item.issueDate, 'DD-MM-YYYY').isBefore(filter.fromDate) ||
+    moment(item.issueDate, 'DD-MM-YYYY').isAfter(filter.toDate)
+  ) {
     filtered_item.isFiltered = true
-    // return filtered_item
-  } else if (filter.toDate && filter.toDate.diff(itemDate) < 0) {
-    filtered_item.isFiltered = true
-    // return filtered_item
+    return filtered_item
   }
 
   // check inStockOnly property
   if (filter.inStockOnly && getBool(item.inStock) !== filter.inStockOnly) {
     filtered_item.isFiltered = true
-    // return filtered_item
+    return filtered_item
   }
 
   // check price range
-  if (filter.priceFrom && item.price < filter.priceFrom) {
+  if (
+    (filter.priceFrom && Number(item.price) < Number(filter.priceFrom)) ||
+    (filter.priceTo && Number(item.price) > Number(filter.priceTo))
+  ) {
     filtered_item.isFiltered = true
-    // return filtered_item
-  } else if (filter.priceTo && item.price > filter.priceTo) {
-    filtered_item.isFiltered = true
-    // return filtered_item
+    return filtered_item
   }
 
   // check color
   if (filter.color && filter.color !== item.color) {
     filtered_item.isFiltered = true
-    // return filtered_item
+    return filtered_item
   }
   return filtered_item
 }
