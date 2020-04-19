@@ -3,8 +3,8 @@ export const LOG_OUT = 'LOG_OUT'
 export const LOG_IN_FAIL = 'LOG_IN_FAIL'
 export const SIGN_UP = 'SIGN_UP'
 
-export function logIn(params, callBack) {
-  return (dispatch) => {
+export function logIn(params) {
+  return dispatch => {
     if (checkAccess(params)) {
       dispatch({
         type: LOG_IN,
@@ -13,7 +13,6 @@ export function logIn(params, callBack) {
           password: params.password,
         },
       })
-      callBack()
     } else {
       dispatch({
         type: LOG_IN_FAIL,
@@ -29,8 +28,8 @@ export function logOut() {
   }
 }
 
-export function signUp(params, callBack) {
-  return (dispatch) => {
+export function signUp(params) {
+  return dispatch =>
     dispatch({
       type: SIGN_UP,
       payload: {
@@ -38,8 +37,6 @@ export function signUp(params, callBack) {
         password: params.password,
       },
     })
-    callBack()
-  }
 }
 
 export function checkAccess(params) {

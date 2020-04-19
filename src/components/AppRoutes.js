@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import LoginPage from '../pages/LoginPage'
-import SearchPage from '../pages/SearchPage'
-import PrivateRoute from '../pages/PrivateRoute'
-import LogoutPage from '../pages/LogoutPage'
+import {
+  LoginPage,
+  SignUpPage,
+  SearchPage,
+  PrivateRoute,
+  LogoutPage,
+} from '../pages'
+
 import NotFound from './NotFound'
 import Cart from './Cart'
 
@@ -24,10 +28,7 @@ class AppRoutes extends Component {
           render={() => <Redirect to={LOGIN_PATH} />}
         />
         <Route path={LOGIN_PATH} component={LoginPage} />
-        <Route
-          path={SIGNUP_PATH}
-          render={props => <LoginPage {...props} isSignup={true} />}
-        />
+        <Route path={SIGNUP_PATH} component={SignUpPage} />} />
         <PrivateRoute path={SEARCH_PATH} component={SearchPage} />
         <PrivateRoute path={CART_PATH} component={Cart} />
         <Route path={LOGOUT_PATH} component={LogoutPage} />
