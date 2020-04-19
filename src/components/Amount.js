@@ -1,9 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class Amount extends Component {
+export class Amount extends Component {
+  constructor(props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(event) {
+    this.props.onChange(event.target.checked)
+  }
+
   render() {
-    const { name, onChange, caption } = this.props
+    const { name, caption } = this.props
     return (
       <div className='col-4'>
         <div className='input-group mb-3'>
@@ -15,7 +24,7 @@ class Amount extends Component {
             type='text'
             className='form-control'
             aria-label='Amount (to the nearest dollar)'
-            onChange={onChange}
+            onChange={this.handleChange}
           />
         </div>
       </div>
@@ -28,5 +37,3 @@ Amount.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 }
-
-export default Amount

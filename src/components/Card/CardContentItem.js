@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class CardContentItem extends Component {
+export class CardContentItem extends Component {
   render() {
     const { caption, value } = this.props
     return (
@@ -17,5 +17,3 @@ CardContentItem.propTypes = {
   caption: PropTypes.string,
   value: PropTypes.string,
 }
-
-export default CardContentItem

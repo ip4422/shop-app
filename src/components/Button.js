@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class Button extends Component {
+export class Button extends Component {
   render() {
     const { caption, onClick } = this.props
     return (
@@ -22,5 +22,3 @@ Button.propTypes = {
   name: PropTypes.string,
   onClick: PropTypes.func,
 }
-
-export default Button

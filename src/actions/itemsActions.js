@@ -1,18 +1,18 @@
-export const SET_ITEMS = 'SET_ITEMS'
+export const SET_ITEM = 'SET_ITEM'
 export const SET_FILTER = 'SET_FILTER'
 export const SET_INSTOCK = 'SET_INSTOCK'
 
-export function setItems(items) {
+export function setItem(item) {
   return {
-    type: SET_ITEMS,
-    payload: items,
+    type: SET_ITEM,
+    payload: item,
   }
 }
 
-export function setInStock(items) {
+export function setInStock(item) {
   return {
     type: SET_INSTOCK,
-    payload: items,
+    payload: item,
   }
 }
 

@@ -5,7 +5,7 @@ import 'react-dates/lib/css/_datepicker.css'
 import '../css/filters.css'
 import { SingleDatePicker } from 'react-dates'
 
-class DatePicker extends Component {
+export class DatePicker extends Component {
   render() {
     const {
       date,
@@ -49,5 +49,3 @@ DatePicker.propTypes = {
 DatePicker.defaultProps = {
   onOutsideRange: () => false,
 }
-
-export default DatePicker

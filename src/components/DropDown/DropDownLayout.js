@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class DropDownLayout extends Component {
+export class DropDownLayout extends Component {
   render() {
     const { caption, items } = this.props
     return (
@@ -21,5 +21,3 @@ DropDownLayout.propTypes = {
   caption: PropTypes.string,
   items: PropTypes.node,
 }
-
-export default DropDownLayout

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import './App.css'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { NavBar } from './components/Nav'
-import AppRoutes from './components/AppRoutes'
+import './App.css'
+
+import { NavBar, AppRoutes } from './components'
 
 class App extends Component {
   render() {
@@ -13,7 +13,7 @@ class App extends Component {
           <AppRoutes />
         </React.Fragment>
       </Router>
-    );
+    )
   }
 }
 
