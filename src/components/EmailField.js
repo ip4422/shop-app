@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class EmailField extends Component {
+export class EmailField extends Component {
   render() {
     const { onChange } = this.props
     return (
@@ -24,5 +24,3 @@ class EmailField extends Component {
 EmailField.propTypes = {
   onChange: PropTypes.func,
 }
-
-export default EmailField

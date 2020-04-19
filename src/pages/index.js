@@ -1,4 +1,5 @@
-export { default as LoginPage } from './LoginPage'
+export { LoginPage } from './LoginPage'
+export { SignUpPage } from './SignUpPage'
 export { default as LogoutPage } from './LogoutPage'
 export { default as PrivateRoute } from './PrivateRoute'
 export { default as SearchPage } from './SearchPage'

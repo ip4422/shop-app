@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class PasswordField extends Component {
+export class PasswordField extends Component {
   render() {
     const { onChange, caption, name } = this.props
     return (
@@ -23,7 +23,5 @@ class PasswordField extends Component {
 PasswordField.propTypes = {
   caption: PropTypes.string,
   name: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 }
-
-export default PasswordField
