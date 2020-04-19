@@ -8,7 +8,7 @@ export class Amount extends Component {
   }
 
   handleChange(event) {
-    this.props.onChange(event.target.checked)
+    this.props.onChange(event.target.value)
   }
 
   render() {
