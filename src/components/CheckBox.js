@@ -16,7 +16,7 @@ export class CheckBox extends Component {
     const { caption, value, name } = this.props
     return (
       <div className='col-4'>
-        <div className='input-group mb-3'>
+        <div className='input-group input-group-lg'>
           <div className='input-group-prepend'>
             <div className='input-group-text'>
               {name ? (
@@ -37,9 +37,7 @@ export class CheckBox extends Component {
               )}
             </div>
           </div>
-          <div className='form-control form-control_left-border text-left bd-highlight'>
-            {caption}
-          </div>
+          <div className='form-control text-left bd-highlight'>{caption}</div>
         </div>
       </div>
     )

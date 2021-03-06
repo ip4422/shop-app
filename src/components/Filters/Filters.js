@@ -23,7 +23,7 @@ export class Filters extends React.Component {
       <div className='container'>
         <div className='pt-3 pb-3 mb-3'>
           <div className='container'>
-            <div className='row'>
+            <div className='row mb-3'>
               <DatePicker
                 caption={'From:'}
                 date={filter.fromDate}
@@ -47,15 +47,13 @@ export class Filters extends React.Component {
               />
             </div>
             <div className='row'>
-              <div className='col'> Price </div>
-            </div>
-            <div className='row'>
-              <Amount caption={'From'} onChange={onChange('priceFrom')} />
-              <Amount caption={'To'} onChange={onChange('priceTo')} />
+              <Amount caption={'Price from'} onChange={onChange('priceFrom')} />
+              <Amount caption={'Price to'} onChange={onChange('priceTo')} />
               <DropDown
+                id='color-picker'
                 caption={'Color'}
-                onChange={onChange('color')}
                 items={colors}
+                onChange={onChange('color')}
               />
             </div>
           </div>

@@ -13,29 +13,24 @@ export class DropDown extends Component {
     this.props.onChange(event.target.value)
   }
 
-  getListItems() {
-    const { items, name } = this.props
-    return (
-      <select name={name} onChange={this.handleChange}>
-        {items &&
-          items.map(value => (
-            <option value={value.toLowerCase()} key={value}>
-              {value}
-            </option>
-          ))}
-      </select>
-    )
-  }
-
   render() {
-    const { caption } = this.props
-    return <DropDownLayout caption={caption} items={this.getListItems()} />
+    const { id, caption, items, name } = this.props
+    return (
+      <DropDownLayout
+        id={id}
+        caption={caption}
+        items={items}
+        name={name}
+        onChange={this.handleChange}
+      />
+    )
   }
 }
 
 DropDown.propTypes = {
+  id: PropTypes.string,
+  caption: PropTypes.string,
   items: PropTypes.array.isRequired,
   name: PropTypes.string,
-  caption: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 }

@@ -2,11 +2,13 @@
   "editor.tabCompletion": "on",
   "editor.tabSize": 2,
   "beautify.tabSize": 2,
-  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
   "typescript.validate.enable": false,
   "javascript.validate.enable": false,
   "search.exclude": {
-    "**/docs": true
+    "**/docs": true,
+    "**/node_modules": true,
+    "**/build": true
   },
   "editor.fontFamily": "Hack, \"Operator Mono\", \"Fira Code\", \"Input Mono\"",
   "editor.fontLigatures": true,

@@ -15,7 +15,7 @@ export class Amount extends Component {
     const { name, caption } = this.props
     return (
       <div className='col-4'>
-        <div className='input-group mb-3'>
+        <div className='input-group input-group-lg'>
           <div className='input-group-prepend'>
             <span className='input-group-text'>{caption} $</span>
           </div>

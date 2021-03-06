@@ -10,7 +10,7 @@ export class Card extends Component {
   render() {
     const { item, onChange } = this.props
     return (
-      <div className='card border-secondary mb-3' key={item.id}>
+      <div className='card mb-3' key={item.id}>
         <div className='card-body'>
           <div className='row'>
             <CardAvatar imageSrc={item.image} name={item.name} />

@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { DropDownItems } from './DropDownItems'
 
 export class DropDownLayout extends Component {
   render() {
-    const { caption, items } = this.props
+    const { id, caption, items, onChange } = this.props
     return (
       <div className='col-4'>
-        <div className='input-group'>
-          <div className='form-control text-right bd-highlight form-control_right-border'>
-            {caption}
+        <div className='input-group input-group-lg'>
+          <div className='input-group-prepend'>
+            <label className='input-group-text' htmlFor={id}>
+              {caption}
+            </label>
           </div>
-          <div className='input-group-append'>{items}</div>
+          <DropDownItems items={items} id={id} onChange={onChange} />
         </div>
       </div>
     )
@@ -18,6 +21,8 @@ export class DropDownLayout extends Component {
 }
 
 DropDownLayout.propTypes = {
+  id: PropTypes.string,
   caption: PropTypes.string,
-  items: PropTypes.node,
+  items: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
 }
