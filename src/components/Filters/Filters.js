@@ -40,11 +40,14 @@ export class Filters extends React.Component {
                 onFocusChange={this.handleFocusChange('focusedToDate')}
                 id={'to-date-id'}
               />
-              <CheckBox
-                caption={'In Stock only'}
-                onChange={onChange('inStockOnly')}
-                checked={filter.inStockOnly}
-              />
+              <div className='col-4'>
+                <CheckBox
+                  caption={'In Stock only'}
+                  onChange={onChange('inStockOnly')}
+                  checked={filter.inStockOnly}
+                  isLarge
+                />
+              </div>
             </div>
             <div className='row'>
               <Amount caption={'Price from'} onChange={onChange('priceFrom')} />
