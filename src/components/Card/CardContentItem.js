@@ -5,9 +5,9 @@ export class CardContentItem extends Component {
   render() {
     const { caption, value } = this.props
     return (
-      <div className='col-4 '>
-        <p className='card-text'>{caption}:</p>
-        <p className='card-text'>{value}</p>
+      <div className='row mb-1'>
+        <span className='mr-3'>{caption}:</span>
+        <span>{value}</span>
       </div>
     )
   }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 export class PasswordField extends Component {
   render() {
-    const { onChange, caption, name } = this.props
+    const { onChange, caption, name, value } = this.props
     return (
       <div className='form-group'>
         <label htmlFor='InputPassword'>{caption}</label>
@@ -14,6 +14,7 @@ export class PasswordField extends Component {
           className='form-control'
           name={name}
           placeholder='Password'
+          value={value}
         />
       </div>
     )
@@ -24,4 +25,5 @@ PasswordField.propTypes = {
   caption: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func,
+  value: PropTypes.string,
 }

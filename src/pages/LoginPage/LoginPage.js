@@ -11,11 +11,22 @@ class LoginPage extends React.Component {
     super(props)
     this.state = {
       errorMsg: this.props.errorMsg,
+      email: 'admin@myself.com',
+      password: 'admin',
     }
+  }
+
+  handleChange = fieldName => event => {
+    this.setState({
+      [fieldName]: event.target.value,
+    })
   }
 
   handleSubmit = event => {
     event.preventDefault()
+
+    const { email, password } = this.state
+
     if (!isValidEmail(event.target.email.value)) {
       this.setState({
         errorMsg: 'email address is incorrect',
@@ -24,18 +35,22 @@ class LoginPage extends React.Component {
     }
     // pass 'admin' cause we have no server part authorization
     this.props.logIn({
-      email: event.target.email.value,
-      password: hashCode(event.target.password.value),
+      email,
+      password: hashCode(password),
       admin: this.props.admin,
     })
   }
 
   render() {
+    const { email, password } = this.state
     return (
       <Login
         {...this.props}
         errorMsg={this.props.errorMsg || this.state.errorMsg}
         onSubmit={this.handleSubmit}
+        onChange={this.handleChange}
+        email={email}
+        password={password}
       />
     )
   }

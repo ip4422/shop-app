@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 export class EmailField extends Component {
   render() {
-    const { onChange } = this.props
+    const { onChange, value } = this.props
     return (
       <div className='form-group'>
         <label htmlFor='email'>Email address</label>
@@ -15,6 +15,7 @@ export class EmailField extends Component {
           name='email'
           aria-describedby='emailHelp'
           placeholder='Enter email'
+          value={value}
         />
       </div>
     )
@@ -23,4 +24,5 @@ export class EmailField extends Component {
 
 EmailField.propTypes = {
   onChange: PropTypes.func,
+  value: PropTypes.string,
 }
