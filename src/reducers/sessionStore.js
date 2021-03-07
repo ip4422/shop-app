@@ -12,7 +12,7 @@ const initialState = {
   errorMsg,
 }
 
-export default (state = initialState, action) => {
+const sessionStore = (state = initialState, action) => {
   switch (action.type) {
     case LOG_IN:
       return {
@@ -50,3 +50,5 @@ export default (state = initialState, action) => {
       return state
   }
 }
+
+export default sessionStore

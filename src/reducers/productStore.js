@@ -10,7 +10,7 @@ const initialState = {
   cart,
 }
 
-export default (state = initialState, action) => {
+const productStore = (state = initialState, action) => {
   switch (action.type) {
     case SET_ITEM:
       return {
@@ -95,3 +95,5 @@ function getFilteredItems(items, filter) {
 export function selectItems(productStore) {
   return getFilteredItems(productStore.items, productStore.filter)
 }
+
+export default productStore
