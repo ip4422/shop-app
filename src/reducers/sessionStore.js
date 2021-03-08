@@ -4,12 +4,14 @@ import {
   LOG_IN_FAIL,
   SIGN_UP,
 } from '../actions/sessionActions'
-import { admin, user, errorMsg } from './initialStore.json'
 
 const initialState = {
-  user,
-  admin,
-  errorMsg,
+  user: { email: '', password: '' },
+  admin: {
+    email: 'admin@myself.com',
+    password: '92668751',
+  },
+  errorMsg: '',
 }
 
 const sessionStore = (state = initialState, action) => {

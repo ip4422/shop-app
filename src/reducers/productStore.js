@@ -1,13 +1,12 @@
 import moment from 'moment'
 import { getBool } from '../helpers/service'
 import { SET_ITEM, SET_FILTER, SET_INSTOCK } from '../actions/itemsActions'
-import { colors, items, filter, cart } from './initialStore.json'
 
 const initialState = {
-  colors,
-  items,
-  filter,
-  cart,
+  colors: [],
+  items: [],
+  filter: {},
+  cart: [],
 }
 
 const productStore = (state = initialState, action) => {

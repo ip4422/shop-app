@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { setInStock } from '../../actions/itemsActions'
 import { Card } from './Card'
 
-class CardContainer extends React.Component {
+export class CardContainerUnconnected extends React.Component {
   handleChange = id => value => {
     this.props.setInStock({
       id: id,
@@ -16,14 +16,13 @@ class CardContainer extends React.Component {
   render() {
     const { item } = this.props
     return (
-      <Card item={item} key={item.id} onChange={this.handleChange(item.id)} />
+      <Card data-test='card-container' item={item} onChange={this.handleChange(item.id)} />
     )
   }
 }
 
-CardContainer.propTypes = {
+CardContainerUnconnected.propTypes = {
   item: PropTypes.object,
-  key: PropTypes.string,
   setInStock: PropTypes.func.isRequired,
 }
 
@@ -31,5 +30,5 @@ const mapDispatchToProps = {
   setInStock: item => setInStock(item),
 }
 
-const WrappedCardContainer = connect(null, mapDispatchToProps)(CardContainer)
+const WrappedCardContainer = connect(null, mapDispatchToProps)(CardContainerUnconnected)
 export { WrappedCardContainer as CardContainer }

@@ -4,7 +4,14 @@ import PropTypes from 'prop-types'
 export class CardAvatar extends Component {
   render() {
     const { imageSrc, name } = this.props
-    return <img src={imageSrc} alt={name} style={{ maxWidth: '150px' }} />
+    return (
+      <img
+        data-test='card-avatar'
+        src={imageSrc}
+        alt={name}
+        style={{ maxWidth: '150px' }}
+      />
+    )
   }
 }
 

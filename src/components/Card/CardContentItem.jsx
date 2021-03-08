@@ -5,7 +5,7 @@ export class CardContentItem extends Component {
   render() {
     const { caption, value } = this.props
     return (
-      <div className='row mb-1'>
+      <div className='row mb-1' data-test='card-content-item'>
         <span className='mr-3'>{caption}:</span>
         <span>{value}</span>
       </div>
