@@ -44,32 +44,32 @@ describe('Render Card component', () => {
   })
 
   test('should render image inside Card component', () => {
-    const component = wrapper.find('CardAvatar')
+    const component = findByTestAttr(wrapper, 'card-avatar')
     expect(component.length).toBe(1)
     expect(component.prop('imageSrc')).toBe(defaultProps.item.image)
     expect(component.prop('name')).toBe(defaultProps.item.name)
   })
 
   test('should render Price inside Card component', () => {
-    const component = wrapper.find('[caption="Price"]')
+    const component = findByTestAttr(wrapper, 'card-price')
     expect(component.length).toBe(1)
     expect(component.prop('value')).toBe(defaultProps.item.price)
   })
 
   test('should render Color inside Card component', () => {
-    const component = wrapper.find('[caption="Color"]')
+    const component = findByTestAttr(wrapper, 'card-color')
     expect(component.length).toBe(1)
     expect(component.prop('value')).toBe(defaultProps.item.color)
   })
 
   test('should render In Stock Only inside Card component', () => {
-    const component = wrapper.find('[caption="In Stock Only"]')
+    const component = findByTestAttr(wrapper, 'card-in-stock-only')
     expect(component.length).toBe(1)
     expect(component.prop('value')).toBe(defaultProps.item.inStock)
   })
 
   test('should render Button "Order" inside Card component', () => {
-    const component = wrapper.find('[caption="In Stock Only"]')
+    const component = findByTestAttr(wrapper, 'card-in-stock-only')
     expect(component.length).toBe(1)
     expect(component.prop('value')).toBe(defaultProps.item.inStock)
   })
@@ -79,7 +79,7 @@ describe('Should react to changes events for inStock component', () => {
   test('should call inStock change with mount component', () => {
     const event = { target: { checked: true } }
     const wrapper = mount(<Card {...defaultProps} />)
-    const component = wrapper.find('[caption="In Stock Only"]')
+    const component = findByTestAttr(wrapper, 'card-in-stock-only')
     component.find('input').simulate('change', event)
     expect(onChangeMock.mock.calls[0][0]).toBe(true)
   })
@@ -87,7 +87,7 @@ describe('Should react to changes events for inStock component', () => {
   test('should call inStock change with shallow render component', () => {
     const event = { target: { checked: true } }
     const wrapper = setup()
-    const component = wrapper.find('[caption="In Stock Only"]')
+    const component = findByTestAttr(wrapper, 'card-in-stock-only')
     component.simulate('change', event)
     expect(onChangeMock.mock.calls[0][0]).toBe(event)
   })

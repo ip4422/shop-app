@@ -12,10 +12,10 @@ export class Card extends Component {
     const { image, name, price, color, issueDate, inStock } = this.props.item
 
     return (
-      <div className='card mb-3' data-test='card-component'>
+      <div data-test='card-component' className='card mb-3'>
         <div className='row no-gutters'>
           <div className='col-md-2' style={{ minWidth: IMAGE_COL_MIN_WIDTH }}>
-            <CardAvatar imageSrc={image} name={name} />
+            <CardAvatar data-test='card-avatar' imageSrc={image} name={name} />
           </div>
           <div className='col-md-10'>
             <div className='card-body'>
@@ -26,17 +26,27 @@ export class Card extends Component {
                     <div className='row'>
                       <div className='col'>
                         <div className='container'>
-                          <CardContentItem caption='Price' value={price} />
                           <CardContentItem
+                            data-test='card-price'
+                            caption='Price'
+                            value={price}
+                          />
+                          <CardContentItem
+                            data-test='card-issue-date'
                             caption='Issue Date'
                             value={issueDate}
                           />
-                          <CardContentItem caption='Color' value={color} />
+                          <CardContentItem
+                            data-test='card-color'
+                            caption='Color'
+                            value={color}
+                          />
                           <div
                             className='row mt-2'
                             style={{ maxWidth: '220px' }}
                           >
                             <CheckBox
+                              data-test='card-in-stock-only'
                               caption={'In Stock Only'}
                               value={inStock}
                               onChange={onChange}
