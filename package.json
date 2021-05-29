@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.6.1",
+    "@types/react": "^17.0.8",
+    "@types/react-dom": "^17.0.5",
     "classnames": "^2.2.6",
     "moment": "^2.29.1",
     "react": "^17.0.1",
@@ -16,6 +20,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
     "start": "PORT=3006 react-scripts start --no-cache",
     "build": "react-scripts build",
     "test": "react-scripts test --no-cache",
@@ -34,8 +39,12 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.0.0",
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.0.1",
+    "prettier": "^2.3.0",
+    "typescript": "^4.3.2"
   }
 }

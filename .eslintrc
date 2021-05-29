@@ -1,5 +1,5 @@
 {
-  "extends": ["react-app", "prettier"],
+  "extends": ["react-app", "prettier", "plugin:@typescript-eslint/recommended"],
   "rules": {
     "no-unused-expressions": [
       "warn",
@@ -10,6 +10,6 @@
     ],
     "jsx-quotes": [1, "prefer-single"]
   },
-  "plugins": ["prettier"],
-  "parser": "babel-eslint"
+  "plugins": ["prettier", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser"
 }
