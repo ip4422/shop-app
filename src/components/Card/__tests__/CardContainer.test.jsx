@@ -38,14 +38,15 @@ const defaultProps = {
 const setupShallow = (props = {}) => {
   const setupProps = { ...defaultProps, ...props }
   const wrapper = shallow(<CardContainerUnconnected {...setupProps} />)
+  // console.log('ShallowWrapper: ', wrapper.debug())
   return wrapper
 }
 
 /**
- * Factory function to create a MountWrapper component for the Input component
+ * Factory function to create a ReactWrapper component for the Input component
  * @function setup
  * @param {object} props  - Component props specific to this setup
- * @returns {ShallowWrapper}
+ * @returns {ReactWrapper}
  */
 const setupMount = (props = {}) => {
   const store = storeFactory(initialStore)
@@ -55,6 +56,7 @@ const setupMount = (props = {}) => {
       <CardContainer {...setupProps} />
     </Provider>
   )
+  // console.log('ReactWrapper: ', wrapper.debug())
   return wrapper
 }
 
