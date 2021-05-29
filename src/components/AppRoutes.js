@@ -27,7 +27,7 @@ export class AppRoutes extends Component {
           render={() => <Redirect to={LOGIN_PATH} />}
         />
         <Route path={LOGIN_PATH} component={LoginPage} />
-        <Route path={SIGNUP_PATH} component={SignUpPage} />} />
+        <Route path={SIGNUP_PATH} component={SignUpPage} />
         <PrivateRoute path={SEARCH_PATH} component={SearchPage} />
         <PrivateRoute path={CART_PATH} component={Cart} />
         <Route path={LOGOUT_PATH} component={LogOutPage} />
