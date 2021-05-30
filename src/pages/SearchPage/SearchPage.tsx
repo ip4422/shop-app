@@ -4,19 +4,21 @@ import { connect } from 'react-redux'
 
 import { selectItems } from '../../reducers/productStore'
 import { Search } from './Search'
+import { ProductItem, Store } from '../../reducers/types'
 
-class SearchPage extends React.Component {
-  render() {
-    const { items } = this.props
-    return <Search items={items} />
-  }
+interface SearchPageProps {
+  items: ProductItem[]
+}
+
+const SearchPage = ({ items }: SearchPageProps): JSX.Element => {
+  return <Search items={items} />
 }
 
 SearchPage.propTypes = {
   items: PropTypes.array.isRequired,
 }
 
-const mapStateToProps = ({ productStore, sessionStore }) => ({
+const mapStateToProps = ({ productStore, sessionStore }: Store) => ({
   items: selectItems(productStore),
 })
 const WrappedSearchPage = connect(mapStateToProps)(SearchPage)

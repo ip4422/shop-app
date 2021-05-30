@@ -26,6 +26,7 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
     password: 'admin',
   })
 
+  // TODO: refactor of state manipulation
   const handleChange =
     (fieldName: string) => (event: ChangeEvent<HTMLInputElement>) => {
       setState({
@@ -58,6 +59,7 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
   const { email, password } = state
   return (
     <Login
+      isAuthorized={props.isAuthorized}
       errorMsg={props.errorMsg || state.errorMsg}
       onSubmit={handleSubmit}
       onChange={handleChange}
