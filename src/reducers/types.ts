@@ -1,4 +1,4 @@
-export type TFilter = {
+export type Filter = {
   fromDate: moment.Moment | null
   toDate: moment.Moment | null
   inStockOnly: boolean
@@ -7,7 +7,7 @@ export type TFilter = {
   color: string[]
 }
 
-export type TProductItem = {
+export type ProductItem = {
   id: string
   name: string
   color: string
@@ -19,25 +19,25 @@ export type TProductItem = {
   isFiltered: boolean
 }
 
-export interface IProductStore {
+export interface ProductStore {
   colors: string[]
-  items: TProductItem[]
-  filter: TFilter
-  cart: TProductItem[]
+  items: ProductItem[]
+  filter: Filter
+  cart: ProductItem[]
 }
 
-export type TUser = {
+export type User = {
   email: string
   password: string
 }
 
-export interface ISessionStore {
-  user: TUser
-  admin: TUser
+export interface SessionStore {
+  user: User
+  admin: User
   errorMsg: string
 }
 
-export interface IStore {
-  productStore: IProductStore
-  sessionStore: ISessionStore
+export interface Store {
+  productStore: ProductStore
+  sessionStore: SessionStore
 }

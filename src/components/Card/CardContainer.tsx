@@ -1,15 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { ProductItem } from '../../reducers/types'
 import { setInStock } from '../../actions/itemsActions'
 import { Card } from './Card'
-import { ICardContainerProps } from '../types'
+
+interface CardContainerProps {
+  item: ProductItem
+  key: string
+  setInStock: <T>(item: T) => any
+}
 
 const CardContainer = ({
   item,
   key,
   setInStock,
-}: ICardContainerProps): JSX.Element => {
+}: CardContainerProps): JSX.Element => {
   const handleChange =
     (id: string): (<T>(value: T) => any) =>
     value => {

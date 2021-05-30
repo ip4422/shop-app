@@ -2,14 +2,19 @@ import React from 'react'
 
 import { CardAvatar, CardContentItem } from '.'
 import { Button, CheckBox } from '..'
-import { ICardProps } from '../types'
+import { ProductItem } from '../../reducers/types'
 
 const IMAGE_COL_MIN_WIDTH = '150px'
 
+interface CardProps {
+  onChange: (value: boolean) => void
+  item: ProductItem
+}
+
 export const Card = ({
-  item = {} as ICardProps['item'],
+  item = {} as CardProps['item'],
   onChange,
-}: ICardProps): JSX.Element => {
+}: CardProps): JSX.Element => {
   return (
     <div className='card mb-3'>
       <div className='row no-gutters'>

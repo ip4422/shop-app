@@ -1,8 +1,14 @@
 import React, { ChangeEvent } from 'react'
-// import PropTypes from 'prop-types'
 
 import { DropDownLayout } from '.'
-import { IDropDownProps } from '../types'
+
+interface DropDownProps {
+  id?: string
+  caption?: string
+  items: string[]
+  name?: string
+  onChange: (value: string) => void
+}
 
 export const DropDown = ({
   id,
@@ -10,12 +16,11 @@ export const DropDown = ({
   items = [],
   name,
   onChange,
-}: IDropDownProps): JSX.Element => {
+}: DropDownProps): JSX.Element => {
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     onChange(event.target.value)
   }
 
-  // const { id, caption, items, name } = this.props
   return (
     <DropDownLayout
       id={id}
@@ -26,11 +31,3 @@ export const DropDown = ({
     />
   )
 }
-
-// DropDown.propTypes = {
-//   id: PropTypes.string,
-//   caption: PropTypes.string,
-//   items: PropTypes.array.isRequired,
-//   name: PropTypes.string,
-//   onChange: PropTypes.func.isRequired,
-// }

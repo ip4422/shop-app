@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 
-import { IButtonProps } from './types'
+interface ButtonProps {
+  caption?: string
+  width?: string
+  onClick?: MouseEventHandler<HTMLButtonElement>
+}
 
 export const Button = ({
   caption,
   onClick,
   width,
-}: IButtonProps): JSX.Element => {
+}: ButtonProps): JSX.Element => {
   return (
     <button
       type='button'

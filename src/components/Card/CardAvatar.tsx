@@ -1,9 +1,13 @@
 import React from 'react'
 
-import { ICardAvatarProps } from '../types'
+interface CardAvatarProps {
+  imageSrc?: string
+  name?: string
+}
+
 export const CardAvatar = ({
   imageSrc,
   name,
-}: ICardAvatarProps): JSX.Element => {
+}: CardAvatarProps): JSX.Element => {
   return <img src={imageSrc} alt={name} style={{ maxWidth: '150px' }} />
 }

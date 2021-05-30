@@ -1,7 +1,14 @@
 import React, { ChangeEvent } from 'react'
 
 import { getBool } from '../helpers/service'
-import { ICheckBoxProps } from './types'
+
+interface CheckBoxProps {
+  caption?: string
+  name?: string
+  value?: string | boolean
+  onChange: (value: boolean) => void
+  isLarge?: boolean
+}
 
 export const CheckBox = ({
   caption,
@@ -9,7 +16,7 @@ export const CheckBox = ({
   name,
   isLarge,
   onChange,
-}: ICheckBoxProps): JSX.Element => {
+}: CheckBoxProps): JSX.Element => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.checked)
   }

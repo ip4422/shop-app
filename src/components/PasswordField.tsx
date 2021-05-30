@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 
-import { IPasswordFieldProps } from './types'
+interface PasswordFieldProps {
+  caption: string
+  name: string
+  onChange: (event: SyntheticEvent) => void
+  value: string
+}
 
 export const PasswordField = ({
   onChange,
   caption,
   name,
   value,
-}: IPasswordFieldProps): JSX.Element => {
+}: PasswordFieldProps): JSX.Element => {
   return (
     <div className='form-group'>
       <label htmlFor='InputPassword'>{caption}</label>

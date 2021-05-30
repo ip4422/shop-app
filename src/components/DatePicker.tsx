@@ -4,7 +4,15 @@ import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
 
 import '../css/filters.css'
-import { IDatePickerProps } from './types'
+
+interface DatePickerProps {
+  onDateChange: (date: moment.Moment | null) => void
+  onFocusChange: (arg: { focused: boolean }) => void
+  focused?: boolean
+  date?: moment.Moment | null
+  id: string
+  caption?: string
+}
 
 export const DatePicker = ({
   caption,
@@ -13,7 +21,7 @@ export const DatePicker = ({
   focused = false,
   onFocusChange,
   id,
-}: IDatePickerProps): JSX.Element => {
+}: DatePickerProps): JSX.Element => {
   const handleOutsideRange = () => false
 
   return (

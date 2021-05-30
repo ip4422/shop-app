@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
 
 import { DatePicker, CheckBox, Amount, DropDown } from '..'
-import { IFiltersProps } from '../types'
-import { TFilter } from '../../reducers/types'
+import { Filter } from '../../reducers/types'
+
+interface FiltersProps {
+  filter?: Filter
+  colors?: string[]
+  onChange: (fieldName: string) => <T>(value: T) => void
+}
 
 export const Filters = ({
   onChange,
-  filter = {} as TFilter,
+  filter = {} as Filter,
   colors = [],
-}: IFiltersProps): JSX.Element => {
+}: FiltersProps): JSX.Element => {
   const [focusedFromDate, setFocusedFromDate] = useState(false)
   const [focusedToDate, setFocusedToDate] = useState(false)
 

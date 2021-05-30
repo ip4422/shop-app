@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { ChangeEventHandler } from 'react'
 
 import { DropDownItems } from './DropDownItems'
-import { IDropDownLayoutProps } from '../types'
+
+interface DropDownLayoutProps {
+  id?: string
+  caption?: string
+  name?: string
+  items: string[]
+  onChange: ChangeEventHandler<HTMLSelectElement>
+}
 
 export const DropDownLayout = ({
   id = '',
@@ -9,7 +16,7 @@ export const DropDownLayout = ({
   name = '',
   items = [],
   onChange,
-}: IDropDownLayoutProps): JSX.Element => {
+}: DropDownLayoutProps): JSX.Element => {
   return (
     <div className='col-4'>
       <div className='input-group input-group-lg'>

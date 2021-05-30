@@ -1,10 +1,14 @@
-import React from 'react'
-import { IEmailFieldProps } from './types'
+import React, { SyntheticEvent } from 'react'
+
+interface EmailFieldProps {
+  onChange: (event: SyntheticEvent) => void
+  value: string
+}
 
 export const EmailField = ({
   onChange,
   value,
-}: IEmailFieldProps): JSX.Element => {
+}: EmailFieldProps): JSX.Element => {
   return (
     <div className='form-group'>
       <label htmlFor='email'>Email address</label>

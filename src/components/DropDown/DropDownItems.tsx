@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { ChangeEventHandler } from 'react'
 
 import { DropDownItem } from './DropDownItem'
-import { IDropDownItemsProps } from '../types'
+
+interface DropDownItemsProps {
+  id?: string
+  name?: string
+  items: string[]
+  onChange: ChangeEventHandler<HTMLSelectElement>
+}
 
 export const DropDownItems = ({
   id,
   name,
   items = [],
   onChange,
-}: IDropDownItemsProps): JSX.Element => {
+}: DropDownItemsProps): JSX.Element => {
   return (
     <select
       className='custom-select form-control'

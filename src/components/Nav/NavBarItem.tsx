@@ -1,12 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { INavBarItemProps } from '../types'
+interface NavBarItemProps {
+  to?: string
+  caption?: string
+}
 
 export const NavBarItem = ({
   to = '',
   caption,
-}: INavBarItemProps): JSX.Element => {
+}: NavBarItemProps): JSX.Element => {
   return (
     <li className='nav-item'>
       <Link className='nav-link' to={to}>

@@ -1,12 +1,16 @@
 import React, { ChangeEvent } from 'react'
 
-import { IAmountProps } from './types'
+interface AmountProps {
+  caption?: string
+  name?: string
+  onChange: (value: string) => void
+}
 
 export const Amount = ({
   name,
   caption,
   onChange,
-}: IAmountProps): JSX.Element => {
+}: AmountProps): JSX.Element => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value)
   }
