@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const NotFound = () => {
+export const Cart = (): JSX.Element => {
   return (
     <div className='container'>
-      <h2>NotFound page</h2>
+      <h2>Cart page</h2>
       <p>under construction</p>
     </div>
   )

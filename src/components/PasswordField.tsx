@@ -2,8 +2,12 @@ import React from 'react'
 
 import { IPasswordFieldProps } from './types'
 
-export const PasswordField = (props: IPasswordFieldProps): JSX.Element => {
-  const { onChange, caption, name, value } = props
+export const PasswordField = ({
+  onChange,
+  caption,
+  name,
+  value,
+}: IPasswordFieldProps): JSX.Element => {
   return (
     <div className='form-group'>
       <label htmlFor='InputPassword'>{caption}</label>
@@ -19,5 +23,3 @@ export const PasswordField = (props: IPasswordFieldProps): JSX.Element => {
     </div>
   )
 }
-
-export default PasswordField
