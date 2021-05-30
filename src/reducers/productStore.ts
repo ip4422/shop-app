@@ -1,24 +1,30 @@
 import moment from 'moment'
+
 import { getBool } from '../helpers/service'
 import { SET_ITEM, SET_FILTER, SET_INSTOCK } from '../actions/itemsActions'
 import { colors, items, filter, cart } from './initialStore.json'
+import { ItemAction } from '../actions/itemsActions'
+import { ProductStore, ProductItem, Filter } from './types'
 
-const initialState = {
+const initialState: ProductStore = {
   colors,
-  items,
-  filter,
+  items: items as ProductItem[],
+  filter: filter as Filter,
   cart,
 }
 
-const productStore = (state = initialState, action) => {
+const productStore = (
+  state = initialState,
+  action: ItemAction
+): ProductStore => {
   switch (action.type) {
     case SET_ITEM:
       return {
         ...state,
         items: state.items.map(item =>
-          item.id === action.payload.id
+          item.id === (action.payload as ProductItem).id
             ? {
-                ...action.payload,
+                ...(action.payload as ProductItem),
               }
             : { ...item }
         ),
@@ -30,8 +36,8 @@ const productStore = (state = initialState, action) => {
         items: state.items.map(item => ({
           ...item,
           inStock:
-            item.id === action.payload.id
-              ? action.payload.inStock
+            item.id === (action.payload as ProductItem).id
+              ? (action.payload as ProductItem).inStock
               : item.inStock,
         })),
       }
@@ -41,7 +47,7 @@ const productStore = (state = initialState, action) => {
         ...state,
         filter: {
           ...state.filter,
-          ...action.payload,
+          ...(action.payload as Filter),
         },
       }
 
@@ -52,8 +58,8 @@ const productStore = (state = initialState, action) => {
 
 // selector
 
-function applyFilter(item, filter) {
-  let filtered_item = item
+function applyFilter(item: ProductItem, filter: Filter) {
+  const filtered_item = item
   filtered_item.isFiltered = false
 
   // compare date interval
@@ -88,12 +94,12 @@ function applyFilter(item, filter) {
   return filtered_item
 }
 
-function getFilteredItems(items, filter) {
-  return items.map((item, index) => applyFilter(item, filter))
+function getFilteredItems(items: ProductItem[], filter: Filter) {
+  return items.map((item: ProductItem) => applyFilter(item, filter))
 }
 
-export function selectItems(productStore) {
-  return getFilteredItems(productStore.items, productStore.filter)
+export function selectItems(store: ProductStore): ProductItem[] {
+  return getFilteredItems(store.items, store.filter)
 }
 
 export default productStore

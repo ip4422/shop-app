@@ -5,21 +5,26 @@ import {
   SIGN_UP,
 } from '../actions/sessionActions'
 import { admin, user, errorMsg } from './initialStore.json'
+import { SessionStore, User } from './types'
+import { SessionAction } from '../actions/sessionActions'
 
-const initialState = {
+const initialState: SessionStore = {
   user,
   admin,
   errorMsg,
 }
 
-const sessionStore = (state = initialState, action) => {
+const sessionStore = (
+  state = initialState,
+  action: SessionAction
+): SessionStore => {
   switch (action.type) {
     case LOG_IN:
       return {
         ...state,
         user: {
-          email: action.payload.email,
-          password: action.payload.password,
+          email: (action.payload as User).email,
+          password: (action.payload as User).password,
         },
         errorMsg: '',
       }
@@ -27,8 +32,8 @@ const sessionStore = (state = initialState, action) => {
       return {
         ...state,
         user: {
-          email: action.payload.email,
-          password: action.payload.password,
+          email: (action.payload as User).email,
+          password: (action.payload as User).password,
         },
         errorMsg: '',
       }
@@ -44,7 +49,7 @@ const sessionStore = (state = initialState, action) => {
     case LOG_IN_FAIL:
       return {
         ...state,
-        errorMsg: action.payload,
+        errorMsg: action.payload as string,
       }
     default:
       return state

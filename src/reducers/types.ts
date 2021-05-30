@@ -2,9 +2,9 @@ export type Filter = {
   fromDate: moment.Moment | null
   toDate: moment.Moment | null
   inStockOnly: boolean
-  priceFrom: string | number
-  proceTo: string | number
-  color: string[]
+  priceFrom: string | number | null
+  priceTo: string | number | null
+  color: string | null
 }
 
 export type ProductItem = {
@@ -14,9 +14,9 @@ export type ProductItem = {
   issueDate: string
   price: string
   rating: string
-  inStock: boolean
+  inStock: boolean | string
   image: string
-  isFiltered: boolean
+  isFiltered: boolean | string
 }
 
 export interface ProductStore {
@@ -41,3 +41,8 @@ export interface Store {
   productStore: ProductStore
   sessionStore: SessionStore
 }
+
+// export type ItemAction = {
+//   type: string
+//   payload: Partial<ProductItem> & Partial<Filter>
+// }

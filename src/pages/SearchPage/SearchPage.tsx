@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { selectItems } from '../../reducers/productStore'
@@ -12,10 +11,6 @@ interface SearchPageProps {
 
 const SearchPage = ({ items }: SearchPageProps): JSX.Element => {
   return <Search items={items} />
-}
-
-SearchPage.propTypes = {
-  items: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = ({ productStore, sessionStore }: Store) => ({
