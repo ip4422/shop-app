@@ -1,23 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-
 import { logOut } from '../../actions/sessionActions'
 import Logout from './Logout'
+import { User } from '../../reducers/types'
+import { Store } from '../../reducers/types'
 
-class LogOutPage extends React.Component {
-  render() {
-    const { logOut, user } = this.props
-    return <Logout logOut={logOut} user={user} />
-  }
+interface LogOutPageProps {
+  logOut: () => void
+  user: User
 }
 
-LogOutPage.propTypes = {
-  user: PropTypes.object.isRequired,
-  logOut: PropTypes.func.isRequired,
+const LogOutPage = ({ logOut, user }: LogOutPageProps): JSX.Element => {
+  return <Logout logOut={logOut} user={user} />
 }
 
-const mapStateToProps = ({ sessionStore }) => ({
+const mapStateToProps = ({ sessionStore }: Store) => ({
   user: sessionStore.user,
 })
 

@@ -1,8 +1,8 @@
-import React, { SyntheticEvent } from 'react'
+import React, { ChangeEvent } from 'react'
 
 interface EmailFieldProps {
-  onChange: (event: SyntheticEvent) => void
-  value: string
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  value?: string
 }
 
 export const EmailField = ({

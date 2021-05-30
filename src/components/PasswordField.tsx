@@ -1,10 +1,10 @@
-import React, { SyntheticEvent } from 'react'
+import React, { ChangeEvent } from 'react'
 
 interface PasswordFieldProps {
-  caption: string
-  name: string
-  onChange: (event: SyntheticEvent) => void
-  value: string
+  caption?: string
+  name?: string
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  value?: string
 }
 
 export const PasswordField = ({

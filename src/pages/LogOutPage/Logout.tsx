@@ -1,9 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Redirect } from 'react-router'
-import { LOGIN_PATH } from '../../components/AppRoutes'
 
-const Logout = ({ logOut, user }) => {
+import { LOGIN_PATH } from '../../components/AppRoutes'
+import { User } from '../../reducers/types'
+
+interface LogoutProps {
+  logOut: () => void
+  user: User
+}
+
+const Logout = ({ logOut, user }: LogoutProps): JSX.Element => {
   return (
     <React.Fragment>
       {user.email ? (
@@ -28,11 +34,6 @@ const Logout = ({ logOut, user }) => {
       )}
     </React.Fragment>
   )
-}
-
-Logout.propTypes = {
-  logOut: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
 }
 
 export default Logout
