@@ -1,5 +1,10 @@
 {
-  "extends": ["react-app", "prettier"],
+  "extends": [
+    "react-app",
+    "prettier",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "rules": {
     "no-unused-expressions": [
       "warn",
@@ -8,8 +13,17 @@
         "allowShortCircuit": true
       }
     ],
-    "jsx-quotes": [1, "prefer-single"]
+    "no-console": "warn",
+    "jsx-quotes": ["warn", "prefer-single"]
   },
-  "plugins": ["prettier"],
-  "parser": "babel-eslint"
+  "plugins": ["prettier", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  }
 }

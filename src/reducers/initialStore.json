@@ -49,7 +49,7 @@
     "toDate": null,
     "inStockOnly": false,
     "priceFrom": null,
-    "proceTo": null,
+    "priceTo": null,
     "color": null
   },
   "cart": []
