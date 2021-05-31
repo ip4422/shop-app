@@ -1,7 +1,11 @@
 import React, { useState, SyntheticEvent, ChangeEvent } from 'react'
 import { connect } from 'react-redux'
 
-import { logIn } from '../../actions/sessionActions'
+import {
+  logIn,
+  SessionParams,
+  SessionAction,
+} from '../../actions/sessionActions'
 import Login from './Login'
 import { isValidEmail, hashCode } from '../../helpers/service'
 import { User } from '../../reducers/types'
@@ -11,7 +15,7 @@ interface LoginPageProps {
   isAuthorized: boolean
   errorMsg: string
   admin: User
-  logIn: <P>(params: P) => any
+  logIn: (params: SessionParams) => SessionAction
 }
 
 type Target = {
@@ -77,7 +81,7 @@ const mapStateToProps = ({ sessionStore }: Store) => ({
 })
 
 const mapDispatchToProps = {
-  logIn: (params: any) => logIn(params),
+  logIn: (params: SessionParams): SessionAction => logIn(params),
 }
 
 const WrappedLoginPage = connect(mapStateToProps, mapDispatchToProps)(LoginPage)

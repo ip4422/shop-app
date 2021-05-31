@@ -1,7 +1,11 @@
 import React, { useState, SyntheticEvent } from 'react'
 import { connect } from 'react-redux'
 
-import { signUp } from '../../actions/sessionActions'
+import {
+  signUp,
+  SessionParams,
+  SessionAction,
+} from '../../actions/sessionActions'
 import SignUp from './SignUp'
 import { isValidEmail, hashCode } from '../../helpers/service'
 import { User } from '../../reducers/types'
@@ -12,7 +16,7 @@ interface SignUpPageProps {
   errorMsg: string
   user: User
   admin: User
-  signUp: <T>(params: T) => void
+  signUp: (params: SessionParams) => SessionAction
 }
 
 type Target = {
@@ -69,7 +73,7 @@ const mapStateToProps = ({ sessionStore }: Store) => ({
 })
 
 const mapDispatchToProps = {
-  signUp: (params: any) => signUp(params),
+  signUp: (params: SessionParams): SessionAction => signUp(params),
 }
 
 const WrappedSignUpPage = connect(

@@ -5,8 +5,8 @@ export const LOG_OUT = 'LOG_OUT'
 export const LOG_IN_FAIL = 'LOG_IN_FAIL'
 export const SIGN_UP = 'SIGN_UP'
 
-interface SessionParams extends User {
-  admin: User
+export interface SessionParams extends User {
+  admin?: User
 }
 
 export type SessionAction = {
@@ -48,7 +48,7 @@ export function signUp(params: SessionParams): SessionAction {
 }
 export function checkAccess(params: SessionParams): boolean {
   return (
-    params.admin.password === params.password &&
-    params.admin.email === params.email
+    params.admin?.password === params.password &&
+    params.admin?.email === params.email
   )
 }
