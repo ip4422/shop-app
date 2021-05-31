@@ -2,13 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { ProductItem } from '../../reducers/types'
-import { setInStock } from '../../actions/itemsActions'
+import { setInStock, InStockAction, InStock } from '../../actions/itemsActions'
 import { Card } from './Card'
 
 interface CardContainerProps {
   item: ProductItem
   key: string
-  setInStock: <T>(item: T) => any
+  setInStock: (item: InStock) => InStockAction
 }
 
 const CardContainer = ({
@@ -17,8 +17,8 @@ const CardContainer = ({
   setInStock,
 }: CardContainerProps): JSX.Element => {
   const handleChange =
-    (id: string): (<T>(value: T) => any) =>
-    value => {
+    (id: string) =>
+    (value: boolean): void => {
       setInStock({
         id: id,
         inStock: value,
@@ -29,7 +29,7 @@ const CardContainer = ({
 }
 
 const mapDispatchToProps = {
-  setInStock: (item: any): any => setInStock(item),
+  setInStock: (item: InStock): InStockAction => setInStock(item),
 }
 
 const WrappedCardContainer = connect(null, mapDispatchToProps)(CardContainer)

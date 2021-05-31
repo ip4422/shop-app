@@ -3,7 +3,11 @@ import moment from 'moment'
 import { getBool } from '../helpers/service'
 import { SET_ITEM, SET_FILTER, SET_INSTOCK } from '../actions/itemsActions'
 import { colors, items, filter, cart } from './initialStore.json'
-import { ItemAction } from '../actions/itemsActions'
+import {
+  ItemAction,
+  InStockAction,
+  FilterAction,
+} from '../actions/itemsActions'
 import { ProductStore, ProductItem, Filter } from './types'
 
 const initialState: ProductStore = {
@@ -15,7 +19,7 @@ const initialState: ProductStore = {
 
 const productStore = (
   state = initialState,
-  action: ItemAction
+  action: ItemAction | InStockAction | FilterAction
 ): ProductStore => {
   switch (action.type) {
     case SET_ITEM:
