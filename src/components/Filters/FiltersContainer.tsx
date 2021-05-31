@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { setFilter } from '../../actions/itemsActions'
+import { setFilter, FilterAction } from '../../actions/itemsActions'
 import { Filters } from './Filters'
 import { Store, Filter } from '../../reducers/types'
 
 interface FiltersContainerProps {
-  setFilter: <T>(items: T) => any
+  setFilter: (filter: Partial<Filter>) => FilterAction
   filter: Filter
   colors: string[]
 }
@@ -17,7 +17,7 @@ const FiltersContainer = ({
   setFilter,
 }: FiltersContainerProps) => {
   const handleChange =
-    (fieldName: string): (<T>(value: T) => any) =>
+    (fieldName: string): (<T>(value: T) => void) =>
     value => {
       setFilter({ [fieldName]: value })
     }
@@ -31,7 +31,7 @@ const mapStateToProps = ({ productStore, sessionStore }: Store) => ({
 })
 
 const mapDispatchToProps = {
-  setFilter: (items: any): any => setFilter(items),
+  setFilter: (filter: Partial<Filter>): FilterAction => setFilter(filter),
 }
 
 const WrappedFiltersContainer = connect(
